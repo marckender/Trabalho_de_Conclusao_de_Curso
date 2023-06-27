@@ -1,9 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+const dotenv = require("dotenv");
+const session = require("express-session");
+dotenv.config();
+require("dotenv/config");
+const database_1 = require("./config/database");
+const api_logger_1 = require("./utils/api-logger");
 class AfroHome {
     constructor() {
         this.app = express();
+        this._db = new database_1.default();
         this.app.use(express.json);
     }
     loadRoutes() {
@@ -13,7 +20,7 @@ class AfroHome {
     }
     listen(port) {
         this.app.listen(port, () => {
-            console.log(` Afro Home is runnig at the port: http://localhost:${port}`);
+            api_logger_1.default.info(`The api project is running at the port: http://localhost:${port}`);
         });
     }
 }
