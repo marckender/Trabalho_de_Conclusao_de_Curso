@@ -7,6 +7,7 @@ dotenv.config();
 import "dotenv/config";
 import Database from "./config/database";
 import apiLogger from "./utils/api-logger";
+import appRoutes from "./routes/app-routes";
 
 class AfroHome {
     public app: express.Application;
@@ -15,13 +16,16 @@ class AfroHome {
     constructor() {
         this.app = express();
         this._db = new Database();
-        this.app.use(express.json)
+        this.app.use(express.json())
+
+        this.loadRoutes();
     }
 
     loadRoutes() {
-        this.app.routes("/").get((req, res) => {
+        this.app.route("/").get((req, res) => {
             res.redirect("/api");
-        })
+        });
+        this.app.use("/", appRoutes);
     }
 
     listen(port: string) {
@@ -29,6 +33,7 @@ class AfroHome {
             apiLogger.info(`The api project is running at the port: http://localhost:${port}`);
         });
     }
+
 
 }
 
