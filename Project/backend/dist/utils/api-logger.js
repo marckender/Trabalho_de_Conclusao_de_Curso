@@ -13,7 +13,7 @@ class Logger {
                 new winston.transports.Console(),
                 new winston.transports.File({ filename: "api.log" }),
             ],
-            format: combine(label({ label: "rechajem-api" }), timestamp(), projectFormat),
+            format: combine(label({ label: "afroHome-api" }), timestamp(), projectFormat),
         });
     }
 }

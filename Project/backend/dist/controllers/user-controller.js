@@ -13,6 +13,19 @@ const user_action_1 = require("../actions/user-action");
 const response_dto_1 = require("../dtos/response.dto");
 const api_logger_1 = require("../utils/api-logger");
 class UserController {
+    findById(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                api_logger_1.default.info(`[UserController] - findById - req.params.id => ${req.params.id}`);
+                const response = yield user_action_1.default.findById(req.params.id);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
+            }
+            catch (error) {
+                api_logger_1.default.info(`[UserController] - findById - error => ${error}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
     findAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
