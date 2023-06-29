@@ -8,6 +8,7 @@ require("dotenv/config");
 const database_1 = require("./config/database");
 const api_logger_1 = require("./utils/api-logger");
 const app_routes_1 = require("./routes/app-routes");
+const user_routes_1 = require("./routes/user-routes");
 class AfroHome {
     constructor() {
         this.app = express();
@@ -20,6 +21,7 @@ class AfroHome {
             res.redirect("/api");
         });
         this.app.use("/", app_routes_1.default);
+        this.app.use("/", user_routes_1.default);
     }
     listen(port) {
         this.app.listen(port, () => {
