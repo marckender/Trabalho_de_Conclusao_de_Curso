@@ -4,7 +4,7 @@ import userController from "../controllers/user-controller";
 
 const userRoutes = express.Router();
 
-console.log("entrei")
 userRoutes.post("/api/users", userController.create);
+userRoutes.get("/api/users", userController.findAll);
 
 export default userRoutes;

@@ -4,8 +4,11 @@ import ApiError from "../utils/api-error";
 import encryptPassword from "../utils/encryptPaswword";
 
 class UserAction {
+    async findAll() {
+        return await userRepository.find().select(["-password", "-token"]);
+    }
     async create(user: IUser, res) {
-        const email = user?.email?.replace( /\s/g, '').toLowerCase()
+        const email: string = user?.email?.replace( /\s/g, '').toLowerCase()
         
         const checkEmail = await this.findByEmail(email);
         if (checkEmail) {

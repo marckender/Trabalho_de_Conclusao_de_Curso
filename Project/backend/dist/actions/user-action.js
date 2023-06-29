@@ -13,6 +13,11 @@ const user_repository_1 = require("../repositories/user-repository");
 const api_error_1 = require("../utils/api-error");
 const encryptPaswword_1 = require("../utils/encryptPaswword");
 class UserAction {
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield user_repository_1.default.find().select(["-password", "-token"]);
+        });
+    }
     create(user, res) {
         var _a;
         return __awaiter(this, void 0, void 0, function* () {

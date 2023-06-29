@@ -3,15 +3,26 @@ import ResponseDto from "../dtos/response.dto";
 import apiLogger from "../utils/api-logger";
 
 class UserController {
+    async findAll(req, res) {
+      try {
+        const response = await userAction.findAll();
+        apiLogger.info(`[UserController] - findAll - response => ${JSON.stringify(response)}`);
+        ResponseDto.httpSuccessResponse(res, 201, response);
+      } catch (error) {
+        apiLogger.info(`[UserController] - findAll - error => ${error}`);
+        ResponseDto.httpErrorResponse(res, error);
+      }
+    }
+
     async create(req, res) {
-        try {
-            apiLogger.info(`[UserController] - create - req.body => ${JSON.stringify(req.body)}`);
-            const response = await userAction.create(req.body, res);
-            ResponseDto.httpSuccessResponse(res, 201, response);
-          } catch (error) {
-            apiLogger.info(`[UserController] - create - error => ${error}`);
-            ResponseDto.httpErrorResponse(res, error);
-          }
+      try {
+          apiLogger.info(`[UserController] - create - req.body => ${JSON.stringify(req.body)}`);
+          const response = await userAction.create(req.body, res);
+          ResponseDto.httpSuccessResponse(res, 201, response);
+        } catch (error) {
+          apiLogger.info(`[UserController] - create - error => ${error}`);
+          ResponseDto.httpErrorResponse(res, error);
+        }
     }
 
 }

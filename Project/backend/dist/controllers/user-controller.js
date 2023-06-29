@@ -13,6 +13,19 @@ const user_action_1 = require("../actions/user-action");
 const response_dto_1 = require("../dtos/response.dto");
 const api_logger_1 = require("../utils/api-logger");
 class UserController {
+    findAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield user_action_1.default.findAll();
+                api_logger_1.default.info(`[UserController] - findAll - response => ${JSON.stringify(response)}`);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
+            }
+            catch (error) {
+                api_logger_1.default.info(`[UserController] - findAll - error => ${error}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
