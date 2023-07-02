@@ -54,6 +54,13 @@ class UserAction {
         return await userRepository.find().select(["-password", "-token"]);
     }
 
+    async findByIdAndUpdate(_id: string, data: any) {
+        return await userRepository.findByIdAndUpdate(_id, {
+          ...data,
+          updatedAt: new Date(),
+        });
+    }
+
 }
 
 export default new UserAction();

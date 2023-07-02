@@ -9,6 +9,7 @@ import Database from "./config/database";
 import apiLogger from "./utils/api-logger";
 import appRoutes from "./routes/app-routes";
 import userRoutes from "./routes/user-routes";
+import authRoutes from "./routes/auth-routes";
 
 class AfroHome {
     public app: express.Application;
@@ -28,6 +29,7 @@ class AfroHome {
         });
         this.app.use("/", appRoutes);
         this.app.use("/", userRoutes);
+        this.app.use("/", authRoutes);
     }
 
     listen(port: string) {

@@ -56,6 +56,11 @@ class UserAction {
             return yield user_repository_1.default.find().select(["-password", "-token"]);
         });
     }
+    findByIdAndUpdate(_id, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield user_repository_1.default.findByIdAndUpdate(_id, Object.assign(Object.assign({}, data), { updatedAt: new Date() }));
+        });
+    }
 }
 exports.default = new UserAction();
 //# sourceMappingURL=user-action.js.map

@@ -3,7 +3,12 @@ export interface IUser {
     name: string;
     email: string;
     phone?: string;
-    password: string;
+    password?: string;
     createdAt?: Date;
     updatedAt?: Date;
-  }
+}
+
+export interface ILogin {
+  email: string;
+  password: string;
+}
