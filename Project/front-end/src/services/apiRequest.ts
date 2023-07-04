@@ -25,7 +25,7 @@ const handleResponse = (response: any) => {
 
 
 export const nuvannApi = axios.create({
-    baseURL: 'http://localhost:8080'
+    baseURL: 'https://trabalho-de-conclusao-de-curso.vercel.app/api'
 });
 
 nuvannApi.interceptors.response.use(handleResponse, handleError);
