@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Routes } from "react-router-dom";
+import { Routes } from "react-router-dom";
 
 const AdminRoutes: React.FC = () => {
   return (

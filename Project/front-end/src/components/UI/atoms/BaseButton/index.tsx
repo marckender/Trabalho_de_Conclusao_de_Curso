@@ -1,8 +1,7 @@
-import React from "react";
 import "./styles.scss";
-
 interface ButtonProps {
   label: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (e:any) => void;
   size?: "small" | "medium" | "large";
   color?: string;

@@ -14,7 +14,7 @@ interface BaseInputProps {
 
 const BaseInput: React.FC<BaseInputProps> =({type, onChange, placeholder, label, required, value}) =>{
 
-    const [inputValue, setInputValue] = useState<string>(value || "");
+    const [, setInputValue] = useState<string>(value || "");
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;

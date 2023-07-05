@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './styles.scss'
 import { FormLogin } from '../../../template/Login/FormLogin';
 import { FormSignUp } from '../../../template/Login/FormSignup';
