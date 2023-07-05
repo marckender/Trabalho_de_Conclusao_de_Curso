@@ -9,9 +9,10 @@ interface ButtonProps {
   background?: string
   width?: number | string;
   disabled?: boolean;
+  loading?:boolean
 }
 
-const BaseButton = ({ disabled, label, onClick, size = "medium", color="ffffff", background = "#0000", width }: ButtonProps) => {
+const BaseButton = ({ loading,disabled, label, onClick, size = "medium", color="ffffff", background = "#0000", width }: ButtonProps) => {
   const buttonSize = size === "small" ? "btn-small" : size === "large" ? "btn-large" : "";
 
   const buttonStyle = {
@@ -21,8 +22,8 @@ const BaseButton = ({ disabled, label, onClick, size = "medium", color="ffffff",
   };
 
   return (
-    <button disabled={disabled} className={`base_button ${buttonSize}`} style={buttonStyle} onClick={onClick}>
-      {label}
+    <button disabled={disabled || loading} className={`base_button ${buttonSize}`} style={buttonStyle} onClick={onClick}>
+      {loading ? 'loading ...': label}
     </button>
   );
 };

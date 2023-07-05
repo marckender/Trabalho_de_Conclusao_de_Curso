@@ -4,7 +4,7 @@ import BaseButton from '../../UI/atoms/BaseButton';
 import { useAuthContext } from '../../../contexts/useAuthContet';
 
 export const FormSignUp = () => {
-const { signUp } = useAuthContext()
+const { signUp, loading } = useAuthContext()
 
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -20,7 +20,8 @@ const { signUp } = useAuthContext()
         <BaseInput label="Nom" type='text' value={name} onChange={e =>setName(e)} />
         <BaseInput label="Email" type='text' value={email} onChange={e =>setEmail(e)} />
         <BaseInput label="Password" type='password' value={password} onChange={e =>setPassword(e)} />
-        <BaseButton label='Sign Up' background='#ff4747' width={100} onClick={handleSubmit}/>
+        <BaseButton 
+          disabled={loading || !name || !email || !password} loading={loading} label='Sign Up' background='#ff4747' width={100} onClick={handleSubmit}/>
 
 
         {/* <CustomButton

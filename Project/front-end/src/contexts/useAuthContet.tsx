@@ -1,63 +1,98 @@
 import { createContext, useContext, useState } from "react";
-// import { Navigate, redirect, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { afroHomeApi } from "../services/apiRequest";
 import { useToast } from "./useToast";
 
 
-interface signUpBodyInterface {
-    name: string;
-    email: string;
-    password: string;
+
+interface authInterface {
+  name?: string;
+  email: string;
+  password:string;
+}
+  interface UserData extends authInterface {
+    id: string | number;
   }
-  // interface UserData {
-  //   id: string | number;
-  //   name: string;
-  //   email: string;
-  //   role?: string;
-  // }
   
-  // interface AuthState {
-  //   token: string;
-  //   user: UserData;
-  // }
+  interface AuthState {
+    token: string;
+    user: UserData;
+  }
   
 interface AuthContextValue {
-    // loading: boolean
-    signUp: (data: signUpBodyInterface) => void;
-    // signIn: (email: string, password: string,) => void;
+    loading: boolean;
+    signUp: (data: authInterface) => void;
+    signIn: (data:authInterface) => void;
     // logout: () => void;
-    // user: UserData;
-    // token: string
+    user: UserData;
+    token: string
 }
   
 const AuthContext = createContext<AuthContextValue>({} as AuthContextValue);
 
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  // const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const {successToast, errorToast}= useToast();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const signUp = async (data: signUpBodyInterface) => {
-        // setLoading(true)
-        try {
-          const response = await afroHomeApi.post("/users", data)
-          console.log(response)
-          successToast(response.data.message)
-          window.location.reload()
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (error: any) {
-          const message: string = error.response.data.error
-          errorToast(message)
-        } finally{
-          //   setLoading(false)
-        }
+  const [data, setData] = useState<AuthState>(() => {
+    const token = localStorage.getItem('@afroHome:token');
+    const user =localStorage.getItem('@afroHome:user');
+    if(token && user) {
+      return {
+        token,
+        user: JSON.parse(user)
+      }
+    }
+    return {} as AuthState;
+
+  })
+
+    const signUp = async (data: authInterface) => {
+      setLoading(true)
+      try {
+        const response = await afroHomeApi.post("/users", data);
+        console.log(response)
+        successToast(response.data.message);
+        window.location.reload();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        const message: string = error.response.data.error;
+        errorToast(message)
+      } finally{
+          setLoading(false)
+      }
+    }
+
+    const signIn = async(data : authInterface) => {
+      setLoading(true)
+      try {
+        const response = await afroHomeApi.post("/auth/login", data)
+        const {user, access_token} = response.data;
+  
+        localStorage.setItem('@afroHome:token', access_token);
+        localStorage.setItem('@afroHome:user', JSON.stringify(user));
+        navigate(location.state || '/');
+        setData({
+          user : user,
+          token: access_token
+        });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        console.log(error)
+        const message: string = error?.response?.data?.error
+        errorToast(message)
+      } finally{
+        setLoading(false)
+      }
     }
 
     return (
-    <AuthContext.Provider value={{signUp}}>
-        {children}
-    </AuthContext.Provider>
-      );
+      <AuthContext.Provider value={{signUp, signIn, user: data.user, token: data.token, loading}}>
+          {children}
+      </AuthContext.Provider>
+    );
 }
 
 // eslint-disable-next-line react-refresh/only-export-components

@@ -26,4 +26,12 @@
         font-size: 20px;
         padding: 20px 40px;
     }
+    &:disabled{
+        background-color: rgb(168, 157, 157)!important;
+
+        &:hover{
+            opacity: unset;
+            cursor:none;
+        }
+    }
 }
