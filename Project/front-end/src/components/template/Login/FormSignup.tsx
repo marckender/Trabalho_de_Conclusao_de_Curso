@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import BaseInput from '../../UI/atoms/BaseInput';
 import BaseButton from '../../UI/atoms/BaseButton';
+import { useAuthContext } from '../../../contexts/useAuthContet';
 
 export const FormSignUp = () => {
-//   const {signUp, loading = false} = useAuthContext();
+const { signUp } = useAuthContext()
 
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -11,7 +12,7 @@ export const FormSignUp = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // signUp(name,email, password);
+    signUp({name,email, password});
   };
 
   return (
@@ -19,7 +20,7 @@ export const FormSignUp = () => {
         <BaseInput label="Nom" type='text' value={name} onChange={e =>setName(e)} />
         <BaseInput label="Email" type='text' value={email} onChange={e =>setEmail(e)} />
         <BaseInput label="Password" type='password' value={password} onChange={e =>setPassword(e)} />
-        <BaseButton label='Sign Up' background='#ff4747' width={100}/>
+        <BaseButton label='Sign Up' background='#ff4747' width={100} onClick={handleSubmit}/>
 
 
         {/* <CustomButton

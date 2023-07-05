@@ -24,13 +24,14 @@ const handleResponse = (response: any) => {
 
 
 
-export const nuvannApi = axios.create({
-    baseURL: 'https://trabalho-de-conclusao-de-curso.vercel.app/api'
+export const afroHomeApi = axios.create({
+    baseURL: 'http://localhost:8080/api'
 });
 
-nuvannApi.interceptors.response.use(handleResponse, handleError);
+afroHomeApi.interceptors.response.use(handleResponse, handleError);
 
-nuvannApi.interceptors.request.use(
+afroHomeApi.interceptors.request.use(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (config: any) => {
         const TOKEN = localStorage.getItem('@nuvann:token');
         config.headers = {
@@ -41,6 +42,7 @@ nuvannApi.interceptors.request.use(
 
         return config;
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (error:any) => {
         Promise.reject(error);
     },

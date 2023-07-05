@@ -3,7 +3,7 @@ import "./styles.scss";
 
 interface ButtonProps {
   label: string;
-  onClick?: () => void;
+  onClick?: (e:any) => void;
   size?: "small" | "medium" | "large";
   color?: string;
   background?: string
