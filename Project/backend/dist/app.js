@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const dotenv = require("dotenv");
 const session = require("express-session");
+const cors = require('cors');
 dotenv.config();
 require("dotenv/config");
 const database_1 = require("./config/database");
@@ -15,6 +16,7 @@ class AfroHome {
         this.app = express();
         this._db = new database_1.default();
         this.app.use(express.json());
+        this.app.use(cors());
         this.loadRoutes();
     }
     loadRoutes() {

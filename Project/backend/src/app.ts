@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as dotenv from "dotenv";
 const session = require("express-session");
+const cors = require('cors');
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ class AfroHome {
         this.app = express();
         this._db = new Database();
         this.app.use(express.json())
+        this.app.use(cors());
 
         this.loadRoutes();
     }
