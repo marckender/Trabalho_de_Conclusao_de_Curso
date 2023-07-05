@@ -14,9 +14,9 @@ const auth_routes_1 = require("./routes/auth-routes");
 class AfroHome {
     constructor() {
         this.app = express();
+        this.app.use(cors());
         this._db = new database_1.default();
         this.app.use(express.json());
-        this.app.use(cors());
         this.loadRoutes();
     }
     loadRoutes() {

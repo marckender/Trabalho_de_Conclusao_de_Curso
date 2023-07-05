@@ -18,9 +18,10 @@ class AfroHome {
 
     constructor() {
         this.app = express();
+         this.app.use(cors());
         this._db = new Database();
         this.app.use(express.json())
-        this.app.use(cors());
+
 
         this.loadRoutes();
     }

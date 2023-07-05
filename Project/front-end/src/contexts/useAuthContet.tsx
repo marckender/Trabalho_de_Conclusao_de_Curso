@@ -44,12 +44,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.log(response)
           successToast(response.data.message)
           window.location.reload()
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-          const message: string = error?.response?.data.message
+          const message: string = error.response.data.error
           errorToast(message)
         } finally{
-        //   setLoading(false)
+          //   setLoading(false)
         }
     }
 
