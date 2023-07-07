@@ -4,6 +4,7 @@ import HomePage from "../components/pages/Home/Home";
 import Login from "../components/pages/Home/Login";
 import { useAuthContext } from "../contexts/useAuthContet";
 import AdminRoutes from "./AdminRoutes";
+import PrivateRoutes from "./PrivatesRoutes";
 
 
 function CheckAuth({ children }: any) {
@@ -27,7 +28,7 @@ export function PrincipalRoutes() {
       <Route path="/login" element={<Login />} />
       {/* <Route path="/promotion" element={<Promotion />}/>
       <Route path="/products/:id" element={<Detail />} />
-      <Route path="/search" element={<Search />} />
+      <Route path="/search" element={<Search />} />*/}
       <Route 
         path="/*" 
         element={
@@ -35,7 +36,7 @@ export function PrincipalRoutes() {
             <PrivateRoutes />
           </CheckAuth>
         }
-      />*/}
+      />
       <Route 
         path="/admin/*" 
         element={

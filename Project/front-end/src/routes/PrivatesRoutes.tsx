@@ -1,7 +1,7 @@
 import React from "react"
 import { Routes } from "react-router-dom";
 
-const PrivateRoute: React.FC = () => {
+const PrivateRoutes: React.FC = () => {
   return (
   <Routes>
     {/* <Route path="/carts" element={<Cart />}/>
@@ -15,4 +15,4 @@ const PrivateRoute: React.FC = () => {
   )
 }
 
-export default PrivateRoute;
+export default PrivateRoutes;
