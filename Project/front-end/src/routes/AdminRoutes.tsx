@@ -1,10 +1,11 @@
 import React from "react"
-import { Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import AdminPage from "../components/pages/Admin";
 
 const AdminRoutes: React.FC = () => {
   return (
   <Routes>
-    {/* <Route path="/teste" element={<Cart />}/> */}
+    <Route path="/dashboard" element={<AdminPage />}/>
   </Routes>
   )
 }

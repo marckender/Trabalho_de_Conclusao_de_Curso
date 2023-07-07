@@ -1,0 +1,15 @@
+.admin_default_page_container {
+    width: 100%;    
+    .admin_content_container {
+        grid-template-columns: 0.5fr 9fr;
+        display: grid;  
+                
+    }
+
+    .admin_content {
+        
+        .admin_content_container {
+            margin: 16px;
+        }
+    }
+}

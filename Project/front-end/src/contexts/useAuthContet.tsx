@@ -12,6 +12,7 @@ interface authInterface {
 }
   interface UserData extends authInterface {
     id: string | number;
+    role: string;
   }
   
   interface AuthState {

@@ -1,21 +1,23 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 // import PrivateRoutes from "./PrivatesRoutes";
 import HomePage from "../components/pages/Home/Home";
 import Login from "../components/pages/Home/Login";
+import { useAuthContext } from "../contexts/useAuthContet";
+import AdminRoutes from "./AdminRoutes";
 
 
-// function CheckAuth({ children }: any) {
-//   const location = useLocation();
-//   const { token } = useAuthContext();
-//   const authenticate = !!token;
+function CheckAuth({ children }: any) {
+  const location = useLocation();
+  const { token } = useAuthContext();
+  const authenticate = !!token;
 
-//   return authenticate ? children : <Navigate to={{pathname: "/login"}} state={location.pathname} replace />
-// }
+  return authenticate ? children : <Navigate to={{pathname: "/login"}} state={location.pathname} replace />
+}
 
-// function IsAdmin({children}: any) {
-//   const { user } = useAuthContext();
-//   return user && user.role === "Admin" ? children : <Navigate to="/login" />;
-// }
+function IsAdmin({children}: any) {
+  const { user } = useAuthContext();
+  return user && user.role === "Admin" ? children : <Navigate to="/login" />;
+}
 
 export function PrincipalRoutes() {
 
@@ -33,7 +35,7 @@ export function PrincipalRoutes() {
             <PrivateRoutes />
           </CheckAuth>
         }
-      />
+      />*/}
       <Route 
         path="/admin/*" 
         element={
@@ -41,7 +43,7 @@ export function PrincipalRoutes() {
             <AdminRoutes />
           </IsAdmin>
         }
-      /> */}
+      /> 
     </Routes>
   );
 }
