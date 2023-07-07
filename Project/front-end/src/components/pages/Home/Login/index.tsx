@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './styles.scss'
 import { FormLogin } from '../../../template/Login/FormLogin';
 import { FormSignUp } from '../../../template/Login/FormSignup';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   const [showLogin, setShowLogin] = useState(true)
@@ -15,7 +16,7 @@ export default function Login() {
 
     <div className="login_container">
       <div className="login_header">
-        <h2>Afro Home</h2>
+        <h2 title='Back to home'><Link to="/">Afro Home</Link></h2>
         <div></div>
       </div>
 

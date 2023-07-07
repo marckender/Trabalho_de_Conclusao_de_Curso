@@ -37,6 +37,9 @@ export default function Footer() {
                     <ul>
                         <li>Terms & Conditions</li>
                         <li>Shipping & Returns</li> 
+                        <li>Shipping & Returns</li> 
+                        <li>Shipping & Returns</li> 
+                        <li>Shipping & Returns</li> 
                     </ul>
                 </div>
                 <div className="payment_method">

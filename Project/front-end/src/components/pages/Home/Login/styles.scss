@@ -3,7 +3,10 @@
     width: 100%;
     .login_header {
         h2 {
-            color: var(--color-principal);
+            a{
+                color: var(--color-principal);
+                text-decoration: none;
+            }
         }
         
         div {
