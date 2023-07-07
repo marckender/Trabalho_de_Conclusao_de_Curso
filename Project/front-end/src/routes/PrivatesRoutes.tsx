@@ -1,11 +1,12 @@
 import React from "react"
-import { Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "../components/pages/Home/Home";
 
 const PrivateRoutes: React.FC = () => {
   return (
   <Routes>
-    {/* <Route path="/carts" element={<Cart />}/>
-    <Route path="/sellers" element={<SellerEnvironment />}/>
+   <Route path="/carts" element={<HomePage />}/>
+     {/* <Route path="/sellers" element={<SellerEnvironment />}/>
       <Route  path="/sellers/products" element={<Products/>}/>
       <Route path="/sellers/products/new" element={<NewProduct/>}/>
     <Route path="/checkout/userinfos" element={<Adress />} />
