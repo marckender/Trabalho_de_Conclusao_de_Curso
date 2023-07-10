@@ -4,6 +4,27 @@ import apiLogger from "../utils/api-logger";
 import productAction from "../actions/product-action";
 
 class ProductController {
+    async find(req: Request, res: Response) {
+      try {
+        apiLogger.info(`[ProductController] - find - id => ${req.params.id}`);
+        const response = await productAction.find(req);
+        ResponseDto.httpSuccessResponse(res, 201, response);
+        
+      } catch (error) {
+        apiLogger.info(`[ProductController] - find - error => ${error}`);
+        ResponseDto.httpErrorResponse(res, error);
+      }
+    }
+    async delete(req: Request, res: Response) {
+      try {
+        apiLogger.info(`[ProductController] - delete - id => ${req.params.id}`);
+        const response = await productAction.delete(req.params.id);
+        ResponseDto.httpSuccessResponse(res, 201, response);
+      } catch (error) {
+        apiLogger.info(`[ProductController] - delete - error => ${error}`);
+        ResponseDto.httpErrorResponse(res, error);
+      }
+    }
     async findAll(req, res) {
       try {
         const response = await productAction.findAll(req);
