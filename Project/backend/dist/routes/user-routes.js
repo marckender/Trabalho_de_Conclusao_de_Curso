@@ -7,6 +7,6 @@ const userRoutes = express.Router();
 userRoutes
     .post("/api/users", user_controller_1.default.create)
     .get("/api/users", auth_middleware_1.default.isAuth, auth_middleware_1.default.isAdmin, user_controller_1.default.findAll)
-    .get("/api/users/:id", user_controller_1.default.findById);
+    .get("/api/users/:id", auth_middleware_1.default.isAuth, auth_middleware_1.default.isAdmin, user_controller_1.default.findById);
 exports.default = userRoutes;
 //# sourceMappingURL=user-routes.js.map

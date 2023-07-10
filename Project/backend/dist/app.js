@@ -22,7 +22,7 @@ class AfroHome {
         this.app.use(express.json());
         const storage = multer.diskStorage({
             destination: (req, file, cb) => {
-                cb(null, 'uploads/');
+                cb(null, 'src/uploads/');
             },
             filename: (req, file, cb) => {
                 const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -31,7 +31,7 @@ class AfroHome {
         });
         const upload = multer({ storage });
         this.app.use(upload.array('images', 5));
-        this.app.use('/uploads', express.static('uploads'));
+        this.app.use('src/uploads', express.static('uploads'));
         this.loadRoutes();
     }
     loadRoutes() {
