@@ -1,4 +1,3 @@
-// import { Response } from "express";
 import * as express from "express"
 import { Multer } from 'multer';
 import ApiError from "../utils/api-error";
@@ -8,7 +7,7 @@ import { Request, Response } from 'express';
 
 class ProductAction {
    async  create(req: any,) {
-    const { name, category, description, discount, price, size } = req.body;
+    const { name, category, description, price } = req.body;
     const images = req.files as Express.Multer.File[];
         const product = {
             ...req.body,

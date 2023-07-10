@@ -14,7 +14,7 @@ const product_repository_1 = require("../repositories/product-repository");
 class ProductAction {
     create(req) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { name, category, description, discount, price, size } = req.body;
+            const { name, category, description, price } = req.body;
             const images = req.files;
             const product = Object.assign(Object.assign({}, req.body), { images: images === null || images === void 0 ? void 0 : images.map((image) => ({
                     filename: image.filename,
