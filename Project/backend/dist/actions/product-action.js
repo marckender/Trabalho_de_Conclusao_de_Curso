@@ -9,12 +9,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const api_error_1 = require("../utils/api-error");
+const product_repository_1 = require("../repositories/product-repository");
 class ProductAction {
     create(req) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { name, category, price, description, discount, color, size } = req.body;
+            const { name, category, description, discount, price, size } = req.body;
             const images = req.files;
-            return Object.assign(Object.assign({}, req.body), images);
+            const product = Object.assign(Object.assign({}, req.body), { images: images === null || images === void 0 ? void 0 : images.map((image) => ({
+                    filename: image.filename,
+                    originalname: image.originalname,
+                    path: image.path,
+                    mimetype: image.mimetype,
+                })) });
+            if (!name || !category || !description || !price || !images.length) {
+                throw new api_error_1.default("you need to fill in these mandatory information", 500);
+            }
+            else {
+                return product_repository_1.default.create(product);
+            }
+        });
+    }
+    findAll(req) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const products = yield product_repository_1.default.find();
+            return products.map((product) => (Object.assign(Object.assign({}, product.toObject()), { images: product.images.map((image) => ({
+                    url: `${req.protocol}://${req.get('host')}/uploads/${image.filename}`
+                })) })));
         });
     }
 }

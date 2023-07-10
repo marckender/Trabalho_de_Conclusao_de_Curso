@@ -13,6 +13,19 @@ const response_dto_1 = require("../dtos/response.dto");
 const api_logger_1 = require("../utils/api-logger");
 const product_action_1 = require("../actions/product-action");
 class ProductController {
+    findAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield product_action_1.default.findAll(req);
+                api_logger_1.default.info(`[ProductController] - findAll - products => ${JSON.stringify(response)}`);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
+            }
+            catch (error) {
+                api_logger_1.default.info(`[ProductController] - findAll - error => ${error}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
