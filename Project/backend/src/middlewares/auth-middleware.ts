@@ -3,6 +3,7 @@ import { JWT_SECRET } from "../config/constants";
 import responseDto from "../dtos/response.dto";
 import apiLogger from "../utils/api-logger";
 import userRepository from "../repositories/user-repository";
+import { UserRole } from "../enums/user-enum";
 
 class AuthMiddleware {
     async isAuth(req, res, next) {
@@ -48,7 +49,7 @@ class AuthMiddleware {
     }
 
     async isAdmin(req, res, next) {
-        if(req.role === "admin"){
+        if(req.role === UserRole.ADMIN){
             next()
         } else {
             return responseDto.httpErrorResponse(

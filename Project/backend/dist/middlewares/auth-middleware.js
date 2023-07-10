@@ -14,6 +14,7 @@ const constants_1 = require("../config/constants");
 const response_dto_1 = require("../dtos/response.dto");
 const api_logger_1 = require("../utils/api-logger");
 const user_repository_1 = require("../repositories/user-repository");
+const user_enum_1 = require("../enums/user-enum");
 class AuthMiddleware {
     isAuth(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -48,7 +49,7 @@ class AuthMiddleware {
     }
     isAdmin(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (req.role === "admin") {
+            if (req.role === user_enum_1.UserRole.ADMIN) {
                 next();
             }
             else {

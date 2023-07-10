@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 const session = require("express-session");
 const cors = require('cors');
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
 
 dotenv.config();
 
@@ -14,6 +13,7 @@ import appRoutes from "./routes/app-routes";
 import userRoutes from "./routes/user-routes";
 import authRoutes from "./routes/auth-routes";
 import productRoutes from "./routes/product-routes";
+import path = require("path");
 
 class AfroHome {
     public app: express.Application;
@@ -24,7 +24,19 @@ class AfroHome {
          this.app.use(cors());
         this._db = new Database();
         this.app.use(express.json())
+
+        const storage = multer.diskStorage({
+            destination: (req, file, cb) => {
+              cb(null, 'uploads/');
+            },
+            filename: (req, file, cb) => {
+              const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+              cb(null, uniqueSuffix + path.extname(file.originalname));
+            },
+          });
+          const upload = multer({ storage });
         this.app.use(upload.array('images', 5))
+        this.app.use('/uploads', express.static('uploads'));
 
 
 
@@ -46,7 +58,6 @@ class AfroHome {
             apiLogger.info(`The api project is running at the port: http://localhost:${port}`);
         });
     }
-
 
 }
 
