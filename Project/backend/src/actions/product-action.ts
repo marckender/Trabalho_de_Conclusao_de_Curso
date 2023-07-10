@@ -1,12 +1,14 @@
-import { Response } from "express";
+// import { Response } from "express";
+import * as express from "express"
+import { Multer } from 'multer';
 
 class ProductAction {
-   async  create(req: any, res: Response<any, Record<string, any>>) {
-    console.log("body", req.body)
-    console.log("files", req.files)
+   async  create(req: any,) {
+    const { name, category, price, description, discount, color, size } = req.body;
+    const images = req.files as Express.Multer.File[];
         return {
             ...req.body,
-            ...req.files
+            ...images
         }
     }
  

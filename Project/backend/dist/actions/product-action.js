@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 class ProductAction {
-    create(req, res) {
+    create(req) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("body", req.body);
-            console.log("files", req.files);
-            return Object.assign(Object.assign({}, req.body), req.files);
+            const { name, category, price, description, discount, color, size } = req.body;
+            const images = req.files;
+            return Object.assign(Object.assign({}, req.body), images);
         });
     }
 }

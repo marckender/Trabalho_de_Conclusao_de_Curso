@@ -18,7 +18,7 @@ class ProductController {
             try {
                 api_logger_1.default.info(`[ProductController] - create - req.body => ${JSON.stringify(req.body)}`);
                 api_logger_1.default.info(`[ProductController] - create - req.body => ${JSON.stringify(req.files)}`);
-                const response = yield product_action_1.default.create(req, res);
+                const response = yield product_action_1.default.create(req);
                 response_dto_1.default.httpSuccessResponse(res, 201, response);
             }
             catch (error) {
