@@ -13,6 +13,32 @@ const response_dto_1 = require("../dtos/response.dto");
 const api_logger_1 = require("../utils/api-logger");
 const product_action_1 = require("../actions/product-action");
 class ProductController {
+    find(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                api_logger_1.default.info(`[ProductController] - find - id => ${req.params.id}`);
+                const response = yield product_action_1.default.find(req);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
+            }
+            catch (error) {
+                api_logger_1.default.info(`[ProductController] - find - error => ${error}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                api_logger_1.default.info(`[ProductController] - delete - id => ${req.params.id}`);
+                const response = yield product_action_1.default.delete(req.params.id);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
+            }
+            catch (error) {
+                api_logger_1.default.info(`[ProductController] - delete - error => ${error}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
     findAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
