@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema(
     token: { type: String },
     resetPasswordToken: { type: Number },
     resetPasswordTime: { type: Date },
-    stripeCustomer: { type: String },
     createdAt: { type: Date, default: new Date() },
     updatedAt: { type: Date, default: new Date() },
   },
