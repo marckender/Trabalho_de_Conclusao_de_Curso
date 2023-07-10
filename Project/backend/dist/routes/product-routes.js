@@ -8,6 +8,6 @@ productRoutes
     .post("/api/products", auth_middleware_1.default.isAuth, auth_middleware_1.default.isAdmin, product_controller_1.default.create)
     .get("/api/products", product_controller_1.default.findAll)
     .get("/api/products/:id", product_controller_1.default.find)
-    .delete("/api/products/:id", product_controller_1.default.delete);
+    .delete("/api/products/:id", auth_middleware_1.default.isAuth, auth_middleware_1.default.isAdmin, product_controller_1.default.delete);
 exports.default = productRoutes;
 //# sourceMappingURL=product-routes.js.map
