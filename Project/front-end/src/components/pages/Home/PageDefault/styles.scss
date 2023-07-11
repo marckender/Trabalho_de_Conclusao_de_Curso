@@ -4,6 +4,19 @@
     height: 100%;
     
     .page_container_content { // to change to 100vh
-        min-height: calc(80vh - 27px);
+        min-height: calc(100vh - 27px);
+        padding: 0 157px;
     }
+}
+
+@media only screen and (max-width: 900px) {
+    .page_default_main_container {
+        width: 100%;
+        height: 100%;
+        
+        .page_container_content { // to change to 100vh
+            padding: 0;
+        }
+    }
+    
 }

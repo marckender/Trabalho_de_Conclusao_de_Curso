@@ -1,7 +1,7 @@
 footer {
     
     .footer_container {
-        padding: 0 176px;
+        padding: 0 157px;
         background-color: var(--color-principal);
         color: #FFF;
     }
@@ -95,7 +95,7 @@ footer {
     
         
     .copyright_area{
-        padding: 0 176px;
+        padding: 0 156px;
         background-color: #CE3042;
         display: flex;
         justify-content: space-between;
@@ -118,10 +118,15 @@ footer {
         }
 
         .copyright_links {
-            width: 25%;
             display: flex;
             justify-content: space-around;
             gap: 15;
+
+            p{
+                &:nth-of-type(1) {
+                    margin-right: 32px;
+                }
+            }
         }
     }
 }

@@ -1,0 +1,71 @@
+.hero_container {
+    height: 384px;
+    background-image: url("../../../../assets/hero.svg");
+    object-fit: cover;
+    border-radius: 30px;
+    margin: 4px 0;
+    
+    
+    .__content {
+        display: grid;
+        align-items: center;
+        
+        width: 60%;
+        height: 80%;
+        
+        p {
+            color: #000;
+            font-family: Inter;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            margin-bottom: 0;
+        }
+
+        padding-left: 64px;
+
+        button {
+            width: 280px;
+            height: 57px;
+            border-radius: 15px;
+
+            color: #FFF1F2;
+            font-family: Inter;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .hero_container {
+        height: 384px;
+        background-image: url("../../../../assets/hero.svg");
+        object-fit: cover;
+        border-radius: 30px;
+        margin: 4px 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+        
+        .__content {
+            width: 100%;
+            padding-left: inherit;
+            display: flex;
+            flex-direction: column;
+
+            button{
+                margin-top: 32px;
+                align-items: center;
+            }
+            
+
+        }
+    }
+}
