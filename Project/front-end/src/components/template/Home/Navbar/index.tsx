@@ -1,4 +1,3 @@
-import "./styles.scss"
 import {AiOutlineMenu} from "react-icons/ai"
 import logo from "../../../../assets/logo.png"
 import { Link } from "react-router-dom"
@@ -7,6 +6,11 @@ import {BsCart3} from "react-icons/bs"
 import InputSearch from "../../../UI/molecules/InputSearch"
 import Drawer from "../../../UI/molecules/Drawer"
 import { useEffect, useState } from "react"
+import { BiLogoFacebookCircle, BiLogoInstagramAlt, BiPhone } from "react-icons/bi"
+import { FaRegUser} from "react-icons/fa"
+import { IoMdMail } from "react-icons/io"
+import { PiShoppingCartThin } from "react-icons/pi"
+import "./styles.scss"
 
 export default function Navbar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -53,15 +57,37 @@ export default function Navbar() {
                 </ul>
             </div>
         </Drawer>
+        <div className="nav_contact_infos">
+          <div className="__icons">
+            <BiLogoFacebookCircle/>
+            <BiLogoInstagramAlt/>
+            <BiPhone/> <span>+ 55499000000</span>
+          </div>
+          <div className="__email">
+            <IoMdMail /> <span> contact@afroHome.ca</span>
+          </div>
+        </div>
         <nav className="nav_container">
             <div className="nav_data">
-                <a href="#" className="nav_logo">
-                    <img src={logo} alt="" />
+              <a href="#" className="nav_logo">
+                  <img src={logo} alt="" />
+              </a>
+
+              <div className="__urls">
+                <a href="#">
+                    Home
                 </a>
+                <a href="#">
+                    Shop
+                </a>
+                <a href="#">
+                    About
+                </a>
+
+              </div>
 
                 <div className="nav__toggle">
                     <i onClick={handleToggleDrawer}> <AiOutlineMenu className="ri-menu-line nav__toggle-menu"/></i>
-                    {/* <i> <AiOutlineClose className=" ri-close-line nav__toggle-menu"/></i> */}
                 </div>
             </div>
             <div className="search__container">
@@ -71,11 +97,11 @@ export default function Navbar() {
 
             <div className="nav_menu">
                 <ul className="nav_list">
-                    <Link to="/login"><HiUserCircle /> Login</Link>
-                    <Link to="/login"><BsCart3/> <span className="nav_cart_count"> 0</span></Link>
+                    <Link to="/login">Login<FaRegUser /></Link>
+                    <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"> 0</span></Link>
                 </ul>
             </div>
         </nav>
-</header>
+    </header>
   )
 }
