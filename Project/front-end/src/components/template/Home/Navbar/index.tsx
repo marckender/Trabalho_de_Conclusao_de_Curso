@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-boolean-cast */
 import {AiOutlineMenu} from "react-icons/ai"
 import logo from "../../../../assets/logo.png"
 import { Link } from "react-router-dom"
@@ -11,8 +12,10 @@ import { FaRegUser} from "react-icons/fa"
 import { IoMdMail } from "react-icons/io"
 import { PiShoppingCartThin } from "react-icons/pi"
 import "./styles.scss"
+import { useAuthContext } from "../../../../contexts/useAuthContet"
 
 export default function Navbar() {
+  const {user} = useAuthContext();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const handleToggleDrawer = () => {
@@ -83,6 +86,9 @@ export default function Navbar() {
                 <a href="#">
                     About
                 </a>
+                <a href="#">
+                    Contact
+                </a>
 
               </div>
 
@@ -97,8 +103,13 @@ export default function Navbar() {
 
             <div className="nav_menu">
                 <ul className="nav_list">
-                    <Link to="/login">Login<FaRegUser /></Link>
-                    <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"> 0</span></Link>
+                    <Link to="/login">
+                      { !!user ? <small>{user.name}</small>
+                      :
+                      <small>Login</small>
+                      }
+                    <FaRegUser /></Link>
+                    <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
                 </ul>
             </div>
         </nav>
