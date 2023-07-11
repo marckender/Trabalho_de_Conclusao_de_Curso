@@ -93,7 +93,7 @@ export default function Navbar() {
               </div>
 
                 <div className="nav__toggle">
-                    <i onClick={handleToggleDrawer}> <AiOutlineMenu className="ri-menu-line nav__toggle-menu"/></i>
+                    <i onClick={handleToggleDrawer}> <AiOutlineMenu className=" nav__toggle-menu"/></i>
                 </div>
             </div>
             <div className="search__container">
