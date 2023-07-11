@@ -1,17 +1,21 @@
 footer {
-    padding: 0 32px;
-
+    
     .separator{
         width: 100%;
         display: flex;
         justify-content: center;
         color: var(--color-principal);
     }
+    .footer_container {
+        padding: 0 176px;
+        background-color: var(--color-principal);
+        color: #FFF;
+    }
 
     .footer_content{
         display: grid; 
-        grid-template-columns: 2fr 1.5fr 2.5fr; 
-        gap: 0px 25px;
+        grid-template-columns: 1fr 1fr 1.5fr 1fr; 
+        gap: 0px 11px;
                 
         .about{
             img{
@@ -28,28 +32,68 @@ footer {
 
         .policy{
             text-align: left;
+
+            h3{
+                color: #FFF;
+                font-family: Inter;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
             ul{
                 list-style: none;
                 padding: 0;
                 li{
                     line-height: 32px;
+
+                    a {
+                        text-decoration: none;
+                        color: #FFF;
+                        font-family: Inter;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                    }
                 }
             }
         }
         .payment_method {
-            display: flex;
-            align-items: center;
-            align-self: center;
-            align-content: center;
+            h3{
+                color: #FFF;
+                font-family: Inter;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
             
             .card{
                 display: flex;
-                justify-content: space-between;
                 flex-wrap: wrap;
                 align-items: center;
         
                 img {
-                    margin: 8px;
+                    margin-right: 8px;
+                }
+            }
+        }
+
+        .social_media {
+            h3 {
+                color: #FFF;
+                font-family: Inter;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+            .icons{
+
+                svg{
+                    width: 29px;
+                    height: 27px;
                 }
             }
         }
@@ -57,24 +101,33 @@ footer {
     
         
     .copyright_area{
-        border-top: 1px solid gray;
+        padding: 0 176px;
+        background-color: #CE3042;
         display: flex;
         justify-content: space-between;
 
         p{
-            font-family: roboto;
-            font-size: 12px;
-            span {
-                color: var(--color-principal);
-                font-size: 14px;
-            }
+            color: #FFF;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
             a{
                 text-decoration: none;
-                color: #000;
+                color: #FFF;
+
                 &:hover {
                     text-decoration: underline;
                 }
             }
+        }
+
+        .copyright_links {
+            width: 25%;
+            display: flex;
+            justify-content: space-around;
+            gap: 15;
         }
     }
 }
@@ -82,44 +135,53 @@ footer {
 
 @media only screen and (max-width: 900px) {
    footer{
-        
-    .footer_content {
-        display: flex;
-        flex-direction: column-reverse;
 
-        .about{
-            text-align: center;
-        }
-
-        .policy{
-            text-align: center;
-            ul{
-              display: flex;
-              justify-content: space-around;
-                li{
-                    line-height: 32px;
-                }
-            }
-        }
-
-        .payment_method {
-        
-            text-align: center;
-        
-            .card{
-                display: flex;
-                justify-content: inherit;
-                flex-wrap: wrap;
-                align-items: center;
+    .footer_container {
+        padding: 0;
+        .footer_content {
+            display: flex;
+            flex-direction: column-reverse;
     
-                img {
-                    margin: 8px;
+            .about{
+                text-align: center;
+            }
+    
+            .policy{
+                text-align: center;
+                ul{
+                  display: flex;
+                  justify-content: space-around;
+                    li{
+                        line-height: 32px;
+                    }
                 }
             }
+    
+            .payment_method {
+            
+                text-align: center;
+            
+                .card{
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    align-items: center;
+        
+                    img {
+                        margin: 8px;
+                    }
+                }
+            }
+    
+            .social_media {
+                text-align: center;
+            }
+    
         }
-
     }
+        
     .copyright_area{
+        padding: 0;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -127,9 +189,10 @@ footer {
         p{
             font-family: roboto;
             font-size: 12px;
-            &:not(:first-child) {
-                display: none;
-            }
+            
+        }
+        .copyright_links {
+            width: 100%;
         }
     }
    }
