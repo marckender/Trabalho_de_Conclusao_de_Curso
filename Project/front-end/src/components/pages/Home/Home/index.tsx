@@ -1,3 +1,4 @@
+import Categories from "../../../template/Home/Categories";
 import Hero from "../../../template/Home/Hero";
 import PopularProducts from "../../../template/Home/PopularProducts";
 import { PageDefault } from "../PageDefault";
@@ -31,6 +32,8 @@ export default function HomePage() {
       <Hero />
       <br />
       <PopularProducts cards={cards} />
+
+      <Categories />
     
     <br />
     </PageDefault>
