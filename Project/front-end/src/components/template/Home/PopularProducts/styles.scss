@@ -1,0 +1,84 @@
+.card-carousel {
+
+    .slick-slider {
+        position: relative;
+        
+        .slick-slide {
+            gap: 0 5px;
+        }
+        
+        .slick-dots {
+          position: absolute;
+          bottom: 10px;
+          list-style: none;
+          display: flex;
+          justify-content: center;
+          padding: 0;
+          
+          li {
+              margin: 0 5px;
+              
+              button {
+                  width: 12px;
+              height: 12px;
+              background-color: #bbb;
+              border-radius: 50%;
+              border: none;
+              cursor: pointer;
+              transition: background-color 0.3s;
+              
+              &:hover {
+                background-color: #555;
+            }
+        }
+        
+        &.slick-active button {
+            background-color: #555;
+        }
+    }
+}
+}
+
+h1 {
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    }
+    .card {
+        border-radius: 8px;
+        text-align: left;
+        margin: 8px 0;
+    }
+    
+    img {
+        cursor: pointer;
+      width: 95%;
+    //   max-width: 250px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  
+    h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: var(--color-principal);
+
+      span{
+        color: rgba(174, 174, 174, 0.50);
+        font-family: Inter;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-decoration:line-through ;
+      }
+    }
+  
+    p {
+      font-size: 14px;
+    }
+  }
+  
