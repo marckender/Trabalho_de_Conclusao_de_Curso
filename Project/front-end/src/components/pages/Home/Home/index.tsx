@@ -8,22 +8,22 @@ export default function HomePage() {
     {
       title: 'Card 1',
       image: 'https://i.imgur.com/lYKm8Wf.png',
-      description: 'Description for Card 1',
+      description: 'Kinky Straight Short Bob Frontal Lace Wig',
     },
     {
       title: 'Card 2',
       image: 'https://i.imgur.com/lYKm8Wf.png',
-      description: 'Description for Card 2',
+      description: 'Kinky Straight Short Bob Frontal Lace Wig',
     },
     {
       title: 'Card 3',
       image: 'https://i.imgur.com/lYKm8Wf.png',
-      description: 'Description for Card 3',
+      description: 'Kinky Straight Short Bob Frontal Lace Wig',
     },
     {
       title: 'Card 4',
       image: 'https://i.imgur.com/lYKm8Wf.png',
-      description: 'Description for Card 4',
+      description: 'Kinky Straight Short Bob Frontal Lace Wig',
     },
   ];
   return (

@@ -9,7 +9,7 @@
         
         .slick-dots {
           position: absolute;
-          bottom: 10px;
+        //   bottom: 4px;
           list-style: none;
           display: flex;
           justify-content: center;
@@ -30,10 +30,18 @@
               &:hover {
                 background-color: #555;
             }
+
+            &::before{
+                display: none;
+            }
         }
         
         &.slick-active button {
-            background-color: #555;
+            background-color: var(--color-principal);
+
+            &::before{
+                display: none;
+            }
         }
     }
 }
@@ -78,7 +86,14 @@ h1 {
     }
   
     p {
-      font-size: 14px;
+        color: #000;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+
+        width: 80%;
     }
   }
   
