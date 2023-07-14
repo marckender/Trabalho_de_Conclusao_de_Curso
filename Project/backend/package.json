@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Trabalho de conclusão de curso",
   "main": "server.js",
+  "engines": {
+    "node": "20.4.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc && npx nodemon",
