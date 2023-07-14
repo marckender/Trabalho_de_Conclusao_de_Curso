@@ -42,7 +42,7 @@ class ProductAction {
     findAll(req) {
         return __awaiter(this, void 0, void 0, function* () {
             const products = yield product_repository_1.default.find();
-            return products.map((product) => (Object.assign(Object.assign({}, product.toObject()), { images: product.images.map((image) => `${req.protocol}://${req.get('host')}/uploads/${image.filename}`) })));
+            return products.map((product) => (Object.assign(Object.assign({}, product.toObject()), { images: product.images.map((image) => `${req.protocol}s://${req.get('host')}/uploads/${image.filename}`) })));
         });
     }
     delete(id) {
