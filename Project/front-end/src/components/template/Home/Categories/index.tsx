@@ -8,12 +8,12 @@ const Categories: React.FC = () => {
     <div className="responsive-cards-container">
       <div className="card">
         <div className="background-image"></div>
-        <button className="centered-button">Botão</button>
+        <button className="centered-button">Braids</button>
       </div>
 
       <div className="card">
         <div className="background-image"></div>
-        <button className="centered-button">Botão</button>
+        <button className="centered-button">Lace</button>
       </div>
     </div>
     </div>
