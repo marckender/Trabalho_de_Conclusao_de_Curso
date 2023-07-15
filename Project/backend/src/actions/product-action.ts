@@ -48,7 +48,7 @@ class ProductAction {
         const products = await ProductRepository.find();
         return products.map((product) =>({
             ...product.toObject(),
-            images: product.images.map((image) => `${req.protocol}s://${req.get('host')}/uploads/${image.filename}`)
+            images: product.images.map((image) => `${req.protocol}://${req.get('host')}/uploads/${image.filename}`)
 
         }))
     }
