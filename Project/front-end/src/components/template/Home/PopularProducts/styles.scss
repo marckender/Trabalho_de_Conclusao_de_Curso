@@ -64,6 +64,8 @@ h1 {
     img {
         cursor: pointer;
       width: 95%;
+      min-width: 95%;
+      min-height: 100%;
     //   max-width: 250px;
       height: auto;
       margin-bottom: 10px;

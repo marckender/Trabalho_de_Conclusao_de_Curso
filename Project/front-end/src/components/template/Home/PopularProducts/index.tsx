@@ -3,18 +3,17 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles.scss';
+import defaultImage from '../../../../assets/C_img.png'
 
-interface Card {
-  title: string;
-  image: string;
-  description: string;
-}
+import {ProductInterface} from "../../../../contexts/useProductContext"
+
 
 interface CardCarouselProps {
-  cards: Card[];
+  cards: ProductInterface[];
 }
 
 const PopularProducts: React.FC<CardCarouselProps> = ({ cards }) => {
+
   const settings = {
     dots:true,
     speed: 500,
@@ -58,7 +57,7 @@ const PopularProducts: React.FC<CardCarouselProps> = ({ cards }) => {
       <Slider {...settings}>
         {cards.map((card, index) => (
           <div key={index} className="card">
-            <img src={card.image} alt={card.title} />
+            <img src={defaultImage} alt={card.name} />
             <h3>#20.000 <span>$5.00</span></h3>
             <p>{card.description}</p>
           </div>

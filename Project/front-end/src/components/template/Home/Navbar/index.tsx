@@ -12,7 +12,7 @@ import { FaRegUser} from "react-icons/fa"
 import { IoMdMail } from "react-icons/io"
 import { PiShoppingCartThin } from "react-icons/pi"
 import "./styles.scss"
-import { useAuthContext } from "../../../../contexts/useAuthContet"
+import { useAuthContext } from "../../../../contexts/useAuthContext"
 
 export default function Navbar() {
   const {user} = useAuthContext();
