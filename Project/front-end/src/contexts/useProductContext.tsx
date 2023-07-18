@@ -28,7 +28,7 @@ const ProductContext = createContext<ProductContextValue>({} as ProductContextVa
 export function ProductProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState([]);
-  const {successToast, errorToast}= useToast();
+  const { errorToast}= useToast();
 
 
     const getProducts = async () => {
