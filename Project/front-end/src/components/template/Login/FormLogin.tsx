@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BaseInput from '../../UI/atoms/BaseInput';
 import BaseButton from '../../UI/atoms/BaseButton';
 import './styles.scss'
-import { useAuthContext } from '../../../contexts/useAuthContet';
+import { useAuthContext } from '../../../contexts/useAuthContext';
 
 export const FormLogin = () => {
     const [email, setEmail] = useState<string>("");

@@ -2,7 +2,7 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 // import PrivateRoutes from "./PrivatesRoutes";
 import HomePage from "../components/pages/Home/Home";
 import Login from "../components/pages/Home/Login";
-import { useAuthContext } from "../contexts/useAuthContet";
+import { useAuthContext } from "../contexts/useAuthContext";
 import AdminRoutes from "./AdminRoutes";
 import PrivateRoutes from "./PrivatesRoutes";
 
