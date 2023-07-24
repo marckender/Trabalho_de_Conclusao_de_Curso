@@ -14,6 +14,7 @@ import userRoutes from "./routes/user-routes";
 import authRoutes from "./routes/auth-routes";
 import productRoutes from "./routes/product-routes";
 import path = require("path");
+import cartRoutes from "./routes/cart-routes";
 
 class AfroHome {
     public app: express.Application;
@@ -51,6 +52,7 @@ class AfroHome {
         this.app.use("/", userRoutes);
         this.app.use("/", authRoutes);
         this.app.use("/", productRoutes);
+        this.app.use("/", cartRoutes);
     }
 
     listen(port: string) {
