@@ -26,6 +26,20 @@ class AuthController {
             }
         });
     }
+    logout(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield auth_action_1.default.logout(req);
+                response_dto_1.default.httpSuccessResponse(res, 200, {
+                    message: "successfully Logout !",
+                });
+            }
+            catch (error) {
+                api_logger_1.default.error(`[AuthController] - logout - error => ${JSON.stringify(error)}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
 }
 exports.default = new AuthController();
 //# sourceMappingURL=auth-controller.js.map

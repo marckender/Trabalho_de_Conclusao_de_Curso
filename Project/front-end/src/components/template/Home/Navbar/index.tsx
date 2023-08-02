@@ -1,5 +1,5 @@
 /* eslint-disable no-extra-boolean-cast */
-import {AiOutlineMenu} from "react-icons/ai"
+import {AiOutlineLogout, AiOutlineMenu} from "react-icons/ai"
 import logo from "../../../../assets/logo.png"
 import { Link } from "react-router-dom"
 import {HiUserCircle} from "react-icons/hi"
@@ -13,9 +13,10 @@ import { IoMdMail } from "react-icons/io"
 import { PiShoppingCartThin } from "react-icons/pi"
 import "./styles.scss"
 import { useAuthContext } from "../../../../contexts/useAuthContext"
+import Dropdown from "../../../UI/atoms/Dropdown"
 
 export default function Navbar() {
-  const {user} = useAuthContext();
+  const {user, logout} = useAuthContext();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const handleToggleDrawer = () => {
@@ -50,6 +51,7 @@ export default function Navbar() {
           document.body.classList.remove('disable-scroll');
         };
       }, [isDrawerOpen]);
+
   return (
     <header className="header">
          <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
@@ -103,12 +105,36 @@ export default function Navbar() {
 
             <div className="nav_menu">
                 <ul className="nav_list">
-                    <Link to="/login">
-                      { !!user ? <small>{user.name}</small>
+                      { !!user ?
+                      <>
+                      <Dropdown contentWidth="100" renderContent={() => (
+                        <div style={{
+                          padding: '8px'
+                        }}>
+                          
+                          <hr />
+                          <span onClick={()=>logout()} style={{
+                            display: 'flex',
+                            gap: '8px'
+                          }}><AiOutlineLogout/> Logout</span>
+                        </div>
+                      )}>
+                        <small>{user.name}</small>
+                      </Dropdown>
+                         
+                      </>
+
                       :
-                      <small>Login</small>
-                      }
-                    <FaRegUser /></Link>
+                      <>
+                    <Link to="/login">
+                      <small style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                      }}>Login <FaRegUser /></small>
+                    </Link>
+                      </>
+                    }
                     <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
                 </ul>
             </div>
