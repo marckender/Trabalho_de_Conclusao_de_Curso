@@ -13,6 +13,7 @@ const bcrypt = require("bcrypt");
 const api_error_1 = require("../utils/api-error");
 const user_action_1 = require("./user-action");
 const getAccessToken_1 = require("../utils/getAccessToken");
+const api_logger_1 = require("../utils/api-logger");
 class AuthAction {
     login(body) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -24,6 +25,12 @@ class AuthAction {
                 }
             }
             throw new api_error_1.default("Invalid email or password.", 500);
+        });
+    }
+    logout(req) {
+        return __awaiter(this, void 0, void 0, function* () {
+            api_logger_1.default.info(`[AuthAction] - logout - userId => ${JSON.stringify(req.userId)}`);
+            return yield user_action_1.default.findByIdAndUpdate(req.userId, { token: "" });
         });
     }
 }
