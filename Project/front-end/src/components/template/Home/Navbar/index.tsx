@@ -16,7 +16,7 @@ import { useAuthContext } from "../../../../contexts/useAuthContext"
 import Dropdown from "../../../UI/atoms/Dropdown"
 
 export default function Navbar() {
-  const {user} = useAuthContext();
+  const {user, logout} = useAuthContext();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const handleToggleDrawer = () => {
@@ -52,10 +52,6 @@ export default function Navbar() {
         };
       }, [isDrawerOpen]);
 
-
-      const handleLogout = () => {
-        alert("Logout")
-      }
   return (
     <header className="header">
          <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
@@ -109,7 +105,6 @@ export default function Navbar() {
 
             <div className="nav_menu">
                 <ul className="nav_list">
-                    <Link to="/#">
                       { !!user ?
                       <>
                       <Dropdown contentWidth="100" renderContent={() => (
@@ -118,7 +113,7 @@ export default function Navbar() {
                         }}>
                           
                           <hr />
-                          <span onClick={()=>handleLogout()} style={{
+                          <span onClick={()=>logout()} style={{
                             display: 'flex',
                             gap: '8px'
                           }}><AiOutlineLogout/> Logout</span>
@@ -130,9 +125,16 @@ export default function Navbar() {
                       </>
 
                       :
-                      <small>Login <FaRegUser /></small>
-                      }
+                      <>
+                    <Link to="/login">
+                      <small style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                      }}>Login <FaRegUser /></small>
                     </Link>
+                      </>
+                    }
                     <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
                 </ul>
             </div>

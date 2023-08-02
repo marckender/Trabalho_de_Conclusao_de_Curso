@@ -24,7 +24,7 @@ interface AuthContextValue {
     loading: boolean;
     signUp: (data: authInterface) => void;
     signIn: (data:authInterface) => void;
-    // logout: () => void;
+    logout: () => void;
     user: UserData;
     token: string
 }
@@ -89,8 +89,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
+     const logout = async(): Promise<void> => {
+      try {
+        await afroHomeApi.get('auth/logout');
+        localStorage.removeItem('@afroHome:token');
+        localStorage.removeItem('@afroHome:user');
+        setData({} as AuthState)
+        navigate("/")
+      } catch (error: unknown) {
+        localStorage.removeItem('@afroHome:token');
+        localStorage.removeItem('@afroHome:user');
+        setData({} as AuthState)
+        // const message: string = error.response.data.message
+        // errorToast(message)
+      }
+    }
+
     return (
-      <AuthContext.Provider value={{signUp, signIn, user: data.user, token: data.token, loading}}>
+      <AuthContext.Provider value={{signUp, signIn, user: data.user, token: data.token, loading, logout}}>
           {children}
       </AuthContext.Provider>
     );
