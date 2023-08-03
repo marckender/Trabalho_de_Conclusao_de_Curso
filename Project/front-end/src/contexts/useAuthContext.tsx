@@ -38,8 +38,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
 
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@afroHome:token');
-    const user =localStorage.getItem('@afroHome:user');
+    const token = localStorage.getItem('@afroHair:token');
+    const user =localStorage.getItem('@afroHair:user');
     if(token && user) {
       return {
         token,
@@ -72,8 +72,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const response = await afroHomeApi.post("/auth/login", data)
         const {user, access_token} = response.data;
   
-        localStorage.setItem('@afroHome:token', access_token);
-        localStorage.setItem('@afroHome:user', JSON.stringify(user));
+        localStorage.setItem('@afroHair:token', access_token);
+        localStorage.setItem('@afroHair:user', JSON.stringify(user));
         navigate(location.state || '/');
         setData({
           user : user,
@@ -91,14 +91,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
      const logout = async(): Promise<void> => {
       try {
-        await afroHomeApi.get('auth/logout');
-        localStorage.removeItem('@afroHome:token');
-        localStorage.removeItem('@afroHome:user');
+        await afroHomeApi.get('/auth/logout');
+        localStorage.removeItem('@afroHair:token');
+        localStorage.removeItem('@afroHair:user');
         setData({} as AuthState)
         navigate("/")
       } catch (error: unknown) {
-        localStorage.removeItem('@afroHome:token');
-        localStorage.removeItem('@afroHome:user');
+        localStorage.removeItem('@afroHair:token');
+        localStorage.removeItem('@afroHair:user');
         setData({} as AuthState)
         // const message: string = error.response.data.message
         // errorToast(message)

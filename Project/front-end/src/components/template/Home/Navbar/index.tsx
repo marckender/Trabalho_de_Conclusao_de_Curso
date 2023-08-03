@@ -69,7 +69,7 @@ export default function Navbar() {
             <BiPhone/> <span>+ 55499000000</span>
           </div>
           <div className="__email">
-            <IoMdMail /> <span> contact@afroHome.ca</span>
+            <IoMdMail /> <span> contact@afroHair.ca</span>
           </div>
         </div>
         <nav className="nav_container">

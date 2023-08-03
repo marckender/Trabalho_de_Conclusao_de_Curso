@@ -43,7 +43,7 @@ class ProductController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const response = yield product_action_1.default.findAll(req);
-                api_logger_1.default.info(`[ProductController] - findAll - products => ${JSON.stringify(response)}`);
+                // apiLogger.info(`[ProductController] - findAll - products => ${JSON.stringify(response)}`);
                 response_dto_1.default.httpSuccessResponse(res, 201, response);
             }
             catch (error) {

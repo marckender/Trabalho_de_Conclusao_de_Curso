@@ -3,9 +3,6 @@ import { ILogin, IUser } from "../interfaces/user-interface";
 import ApiError from "../utils/api-error";
 import UserAction from "./user-action";
 import getAccessToken from "../utils/getAccessToken";
-import { Request } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
-import { ParsedQs } from "qs";
 import apiLogger from "../utils/api-logger";
 
 class AuthAction {

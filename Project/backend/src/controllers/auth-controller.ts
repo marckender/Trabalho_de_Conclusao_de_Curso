@@ -6,7 +6,7 @@ import apiLogger from "../utils/api-logger";
 class AuthController {
     async login(req: Request, res: Response):Promise<void> {
         try {
-            apiLogger.error(`[AuthController] - login - email - ${req.body.email}`);
+            apiLogger.info(`[AuthController] - login - email - ${req.body.email}`);
             const response = await AuthAction.login(req.body);
             res.send(response)
         } catch (error) {

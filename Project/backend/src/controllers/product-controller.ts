@@ -28,7 +28,7 @@ class ProductController {
     async findAll(req, res) {
       try {
         const response = await productAction.findAll(req);
-        apiLogger.info(`[ProductController] - findAll - products => ${JSON.stringify(response)}`);
+        // apiLogger.info(`[ProductController] - findAll - products => ${JSON.stringify(response)}`);
         ResponseDto.httpSuccessResponse(res, 201, response);
       } catch (error) {
         apiLogger.info(`[ProductController] - findAll - error => ${error}`);
