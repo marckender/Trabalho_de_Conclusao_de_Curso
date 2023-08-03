@@ -16,7 +16,7 @@ class AuthController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                api_logger_1.default.error(`[AuthController] - login - email - ${req.body.email}`);
+                api_logger_1.default.info(`[AuthController] - login - email - ${req.body.email}`);
                 const response = yield auth_action_1.default.login(req.body);
                 res.send(response);
             }

@@ -8,8 +8,8 @@ const handleError = (error: any ) => {
 
     if(response?.status && response?.status === 401) {
         alert("[401] without permission");
-        localStorage.removeItem('@afroHome:token')
-        localStorage.removeItem('@afroHome:user')
+        localStorage.removeItem('@afroHair:token')
+        localStorage.removeItem('@afroHair:user')
 
         const {protocol, host } = window.location;
         window.location.replace(`${protocol}//${host}`);
@@ -33,7 +33,7 @@ afroHomeApi.interceptors.response.use(handleResponse, handleError);
 afroHomeApi.interceptors.request.use(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (config: any) => {
-        const TOKEN = localStorage.getItem('@nuvann:token');
+        const TOKEN = localStorage.getItem('@afroHair:token');
         config.headers = {
             ...config.headers,
             'Content-Type': 'application/json',
