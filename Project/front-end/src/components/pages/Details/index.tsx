@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useProductContext } from '../../../contexts/useProductContext';
 import PaggingSlider from '../../template/Home/Details/PaggingSlider'
 import { PageDefault } from '../Home/PageDefault'

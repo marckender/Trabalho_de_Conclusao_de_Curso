@@ -6,7 +6,7 @@ interface PaggingSliderProps {
 
 const PaggingSlider: React.FC<PaggingSliderProps> =({images}) =>{
   const [slideIndex, setSlideIndex] =useState(1);
-  const [width, setWidth] =useState(0);
+  const [, setWidth] =useState(0);
   const [start, setStart] =useState(0);
   const [change, setChange] =useState(0);
   const counts: any = images?.length
