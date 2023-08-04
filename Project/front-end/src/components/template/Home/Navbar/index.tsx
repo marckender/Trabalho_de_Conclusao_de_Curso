@@ -74,14 +74,14 @@ export default function Navbar() {
         </div>
         <nav className="nav_container">
             <div className="nav_data">
-              <a href="#" className="nav_logo">
+              <Link to="/" className="nav_logo">
                   <img src={logo} alt="" />
-              </a>
+              </Link>
 
               <div className="__urls">
-                <a href="#">
+                <Link to="/">
                     Home
-                </a>
+                </Link>
                 <a href="#">
                     Shop
                 </a>

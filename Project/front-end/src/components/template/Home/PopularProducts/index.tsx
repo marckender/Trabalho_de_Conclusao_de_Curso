@@ -6,6 +6,7 @@ import './styles.scss';
 import defaultImage from '../../../../assets/C_img.png'
 
 import {ProductInterface} from "../../../../contexts/useProductContext"
+import { useNavigate } from 'react-router-dom';
 
 
 interface CardCarouselProps {
@@ -13,6 +14,7 @@ interface CardCarouselProps {
 }
 
 const PopularProducts: React.FC<CardCarouselProps> = ({ cards }) => {
+  const navigate = useNavigate();
 
   const settings = {
     dots:true,
@@ -56,8 +58,8 @@ const PopularProducts: React.FC<CardCarouselProps> = ({ cards }) => {
         <h1>Popular Product</h1>
       <Slider {...settings}>
         {cards.map((card, index) => (
-          <div key={index} className="card">
-            <img src={defaultImage} alt={card.name} />
+          <div key={index} className="card" >
+            <img src={defaultImage} alt={card.name} onClick={()=>{navigate(`/details/${card._id}`)}}/>
             <h3>#20.000 <span>$5.00</span></h3>
             <p>{card.description}</p>
           </div>
