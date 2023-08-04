@@ -5,6 +5,7 @@ import { useToast } from "./useToast";
 
 
 export interface ProductInterface {
+  _id?: string;
   name?: string;
   price: number;
   description: string;
@@ -17,10 +18,14 @@ export interface ProductInterface {
   updatedAt?:string
 }
 
+type ProductType = ProductInterface[];
+
 interface ProductContextValue {
     loading: boolean;
-    products: ProductInterface[];
-    getProducts: () => void;
+    products: ProductType;
+    product: ProductInterface | null;
+    getProduct:(id:string) => Promise<void>;
+    getProducts: () => Promise<void>;
 }
   
 const ProductContext = createContext<ProductContextValue>({} as ProductContextValue);
@@ -28,6 +33,7 @@ const ProductContext = createContext<ProductContextValue>({} as ProductContextVa
 export function ProductProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState<ProductInterface | null>(null);
   const { errorToast}= useToast();
 
 
@@ -46,8 +52,17 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
+    const getProduct = async(id:string) => {
+      try {
+        const response = await afroHomeApi.get(`products/${id}`)
+        setProduct(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     return (
-      <ProductContext.Provider value={{getProducts, products, loading}}>
+      <ProductContext.Provider value={{getProducts, products, product, getProduct, loading}}>
           {children}
       </ProductContext.Provider>
     );
