@@ -2,6 +2,56 @@
     .detail__content {
         display: grid; 
         grid-template-columns: 1.5fr 2fr; 
-        gap: 0px 11px; 
+        gap: 0px 40px;
+
+        .detail__price_quantidade{
+            display: flex;
+            justify-content: space-between;
+
+            .detail_price_section {
+                display: flex;
+                gap: 0 8px;
+
+                h4 {
+                    text-decoration: line-through;
+                    color: #EC4256;
+                }
+            }
+        }
+
+    }
+}
+
+
+
+@media only screen and (max-width: 900px) {
+    .detail__container {
+        .detail__content {
+            display: flex;
+            flex-direction: column;
+
+            h2 {
+                font-size: 16px;
+            }
+
+
+            .detail__price_quantidade{
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+    
+                .detail_price_section {
+                    display: flex;
+                    align-items: center;
+                    gap: 0 8px;
+                }
+                
+                .detail_quantity {
+                    display: flex;
+                    justify-content: center;
+                    text-align: center;
+                }
+            }
+        }
     }
 }

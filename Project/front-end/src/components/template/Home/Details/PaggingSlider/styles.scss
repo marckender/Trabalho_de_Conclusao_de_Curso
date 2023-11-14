@@ -1,0 +1,94 @@
+.product_details {
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+
+    .Product_page_img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #fff;
+        
+        .slides {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                display: inline-block;
+            }
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+
+            transform: translateY(-50%);
+            width: auto;
+            padding: 10px;
+            // margin-top: -50%;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            text-decoration: none;
+
+            &:hover {
+                background: #EC4256;
+            }
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+    }
+    .slider_images {
+        width: 18%;
+        height: 300px;
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: column;
+        user-select: none;
+        margin: 0 8px 8px 0;
+
+        
+        &::-webkit-scrollbar{
+            display: none;
+        }
+        
+        .slider_box {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            margin: 0 30px 8px 0;
+            opacity: 0.6;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: inline-block;
+            }
+
+            &:hover {
+                border: 1px solid teal;
+            }
+            
+        }
+        .active {
+            opacity: 1;
+            border: 2px solid var(--blue-principal-000052);
+            padding: 3px;
+
+        }
+    }
+}
