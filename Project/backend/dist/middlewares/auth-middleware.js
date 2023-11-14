@@ -20,7 +20,6 @@ class AuthMiddleware {
         return __awaiter(this, void 0, void 0, function* () {
             let token = req.headers["authorization"];
             api_logger_1.default.info(`[AuthMiddleware] - validate - token => ${token}`);
-            console.log("______________", token);
             if (token) {
                 token = token.replace("Bearer", "").trim();
                 jwt.verify(token, constants_1.JWT_SECRET, function (err, decoded) {
