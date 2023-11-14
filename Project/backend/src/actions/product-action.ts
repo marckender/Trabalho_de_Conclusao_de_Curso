@@ -1,8 +1,10 @@
 import * as express from "express"
-import { Multer } from 'multer';
+
 import ApiError from "../utils/api-error";
 import ProductRepository from "../repositories/product-repository";
 import { Request } from 'express';
+
+
 
 
 class ProductAction {
@@ -22,26 +24,28 @@ class ProductAction {
   }
  
    async  create(req: any,) {
-    const { name, category, description, price } = req.body;
-    const images = req.files as Express.Multer.File[];
-        const product = {
-            ...req.body,
-            images: images?.map((image) => ({
-                filename: image.filename,
-                originalname: image.originalname,
-                path: image.path,
-                mimetype: image.mimetype,
-            })),
-        }
+    // const { name, category, description, price } = req.body;
 
-        if(!name || !category || !description ||!price || !images.length) {
-            throw new ApiError(
-                "you need to fill in these mandatory information",
-                500
-            );
-        } else {
-            return ProductRepository.create(product);
-        }
+console.log("reqqqq__________", req)
+    // const images = req.files as Express.Multer.File[];
+    // const product = {
+    //     ...req.body,
+    //     images: images?.map((image) => ({
+    //         filename: image.filename,
+    //         originalname: image.originalname,
+    //         path: image.path,
+    //         mimetype: image.mimetype,
+    //     })),
+    // }
+
+        // if(!name || !category || !description ||!price || !images.length) {
+        //     throw new ApiError(
+        //         "you need to fill in these mandatory information",
+        //         500
+        //     );
+        // } else {
+        //     return ProductRepository.create(product);
+        // }
     }
 
     async findAll(req: Request) {
