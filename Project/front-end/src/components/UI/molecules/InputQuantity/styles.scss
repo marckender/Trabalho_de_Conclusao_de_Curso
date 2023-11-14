@@ -1,0 +1,42 @@
+.qty-min, .qty-max {
+	width: 24px;
+    height: 24px;
+    background: transparent;
+    text-align: center;
+    font-size: 19px;
+    line-height: 24px;
+    color: #000;
+    cursor: pointer;
+    font-weight: 600;
+}
+.qty-min {
+    line-height: 22px;
+}
+.qty-min {
+	border-radius: 3px 0 0 3px; 
+}
+.qty-plus {
+	border-radius: 0 3px 3px 0; 
+}
+.qty {
+	width: 40px;
+	text-align: center;
+	border: none;
+}
+.count-inlineflex {
+	display: inline-flex;
+	border: solid 2px #ccc;
+	border-radius: 20px;
+
+    input {
+        background-color:rgb(236, 236, 236);
+    }
+}
+
+.label {
+    color: rgb(117, 117, 117);
+    width: 110px;
+    text-transform: capitalize;
+    flex-shrink: 0;
+    align-items: center;
+}

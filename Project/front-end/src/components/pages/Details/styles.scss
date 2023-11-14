@@ -2,6 +2,22 @@
     .detail__content {
         display: grid; 
         grid-template-columns: 1.5fr 2fr; 
-        gap: 0px 11px; 
+        gap: 0px 40px;
+
+        .detail__price_quantidade{
+            display: flex;
+            justify-content: space-between;
+
+            .detail_price_section {
+                display: flex;
+                gap: 0 8px;
+
+                h4 {
+                    text-decoration: line-through;
+                    color: #EC4256;
+                }
+            }
+        }
+
     }
 }
