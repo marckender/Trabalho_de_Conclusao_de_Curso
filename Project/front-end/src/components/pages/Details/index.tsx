@@ -16,9 +16,9 @@ export default function Details() {
 
     const [qty, setQty] = useState(1);
 
-    const handleChangeQuantity = (qty: number) => {
-        setQty(Number(qty));
-      }
+    // const handleChangeQuantity = (qty: number) => {
+    //     setQty(Number(qty));
+    //   }
     
       const handleIncrement = () =>{
         setQty(qty+1);
