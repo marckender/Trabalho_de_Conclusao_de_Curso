@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles.scss';
-import defaultImage from '../../../../assets/C_img.png'
 
 import {ProductInterface} from "../../../../contexts/useProductContext"
 import { useNavigate } from 'react-router-dom';
@@ -59,9 +58,9 @@ const PopularProducts: React.FC<CardCarouselProps> = ({ cards }) => {
       <Slider {...settings}>
         {cards.map((card, index) => (
           <div key={index} className="card" >
-            <img src={defaultImage} alt={card.name} onClick={()=>{navigate(`/details/${card._id}`)}}/>
-            <h3>#20.000 <span>$5.00</span></h3>
-            <p>{card.description}</p>
+            <img src={card.images[0]} alt={card.name} onClick={()=>{navigate(`/details/${card._id}`)}}/>
+            <h3>{card.price} <span>$5.00</span></h3>
+            <p>{card.name}</p>
           </div>
         ))}
       </Slider>
