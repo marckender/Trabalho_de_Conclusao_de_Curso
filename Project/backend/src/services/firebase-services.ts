@@ -6,7 +6,7 @@ const serviceAccount = require("../config/firebase-data.json")
 
 let admin = require("firebase-admin");
 
-const BUCKET = "gs://afro-home.appspot.com/"
+const BUCKET = "afro-home.appspot.com"
 
 
 admin.initializeApp({
@@ -18,7 +18,6 @@ const bucket = admin.storage().bucket();
 
 const uploadImage = (req, res, next) => {
 
-    console.log("entrou")
   if (!req.file) return next();
 
   const imagem = req.file;

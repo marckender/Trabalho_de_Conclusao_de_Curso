@@ -26,7 +26,7 @@ class ProductAction {
    async  create(req: any,) {
     // const { name, category, description, price } = req.body;
 
-console.log("reqqqq__________", req)
+console.log("reqqqq__________", req.file)
     // const images = req.files as Express.Multer.File[];
     // const product = {
     //     ...req.body,

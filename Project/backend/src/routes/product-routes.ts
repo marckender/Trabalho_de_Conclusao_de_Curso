@@ -1,25 +1,26 @@
 import * as express from "express";
 import authMiddleware from "../middlewares/auth-middleware";
 import productController from "../controllers/product-controller";
+const multer = require("multer");
 
-// const multer = require("multer");
-
-// const Multer = multer({
-//   storage: multer.memoryStorage(),
-//   limits: 1024 * 1024,
-// });
 const productRoutes = express.Router();
 
 
+const Multer = multer({
+  storage: multer.memoryStorage(),
+});
 
-// const uploadImage = require("../services/firebase-services")
+const uploadImage = require("../services/firebase-services")
 
+const type = Multer.single('imagem');
 
 productRoutes
   .post(
     "/api/products",
     authMiddleware.isAuth,
     authMiddleware.isAdmin,
+    type,
+    uploadImage,
     productController.create,
   )
   .get("/api/products", productController.findAll)

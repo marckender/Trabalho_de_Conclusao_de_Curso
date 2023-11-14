@@ -56,7 +56,7 @@ class ProductController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 api_logger_1.default.info(`[ProductController] - create - req.body => ${JSON.stringify(req.body)}`);
-                api_logger_1.default.info(`[ProductController] - create - req.body => ${JSON.stringify(req.files)}`);
+                // apiLogger.info(`[ProductController] - create - req.body => ${JSON.stringify(req.files)}`);
                 const response = yield product_action_1.default.create(req);
                 response_dto_1.default.httpSuccessResponse(res, 201, response);
             }
