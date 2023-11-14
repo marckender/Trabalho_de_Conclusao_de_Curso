@@ -42,6 +42,7 @@ export default function Details() {
                 <div>
                     <PaggingSlider images={product?.images}/>
                 </div>
+
                 <div>
                     <h2>{product?.name}</h2>
 
@@ -54,7 +55,7 @@ export default function Details() {
                             <h4> $ 0.00</h4>
                         </div>
 
-                        <div>
+                        <div className="detail_quantity">
                             <InputQuantity
                                 total={50}
                                 label='Amount'
