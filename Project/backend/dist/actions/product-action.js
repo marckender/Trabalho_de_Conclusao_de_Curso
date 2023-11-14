@@ -18,37 +18,26 @@ class ProductAction {
             if (!product) {
                 throw new api_error_1.default("Product Not Found", 500);
             }
-            return Object.assign(Object.assign({}, product.toObject()), { images: product.images.map((image) => `${req.protocol}://${req.get('host')}/uploads/${image.filename}`) });
+            return Object.assign({}, product.toObject());
         });
     }
     create(req) {
         return __awaiter(this, void 0, void 0, function* () {
-            // const { name, category, description, price } = req.body;
-            console.log("reqqqq__________", req.file);
-            // const images = req.files as Express.Multer.File[];
-            // const product = {
-            //     ...req.body,
-            //     images: images?.map((image) => ({
-            //         filename: image.filename,
-            //         originalname: image.originalname,
-            //         path: image.path,
-            //         mimetype: image.mimetype,
-            //     })),
-            // }
-            // if(!name || !category || !description ||!price || !images.length) {
-            //     throw new ApiError(
-            //         "you need to fill in these mandatory information",
-            //         500
-            //     );
-            // } else {
-            //     return ProductRepository.create(product);
-            // }
+            const { name, category, description, price } = req.body;
+            const images = req.files;
+            const product = Object.assign(Object.assign({}, req.body), { images: images === null || images === void 0 ? void 0 : images.map((image) => (image.firebaseUrl)) });
+            if (!name || !category || !description || !price || !images.length) {
+                throw new api_error_1.default("you need to fill in these mandatory information", 500);
+            }
+            else {
+                return product_repository_1.default.create(product);
+            }
         });
     }
     findAll(req) {
         return __awaiter(this, void 0, void 0, function* () {
             const products = yield product_repository_1.default.find();
-            return products.map((product) => (Object.assign(Object.assign({}, product.toObject()), { images: product.images.map((image) => `${req.protocol}://${req.get('host')}/uploads/${image.filename}`) })));
+            return products.map((product) => (Object.assign({}, product.toObject())));
         });
     }
     delete(id) {

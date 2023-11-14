@@ -4,9 +4,6 @@ import ApiError from "../utils/api-error";
 import ProductRepository from "../repositories/product-repository";
 import { Request } from 'express';
 
-
-
-
 class ProductAction {
   async find(req: Request) {
     const product = await ProductRepository.findById(req.params.id);
@@ -17,42 +14,34 @@ class ProductAction {
         );
     }
     return{
-        ...product.toObject(),
-        images: product.images.map((image) => `${req.protocol}://${req.get('host')}/uploads/${image.filename}`)
+        ...product.toObject()
     }
 
   }
  
    async  create(req: any,) {
-    // const { name, category, description, price } = req.body;
+    const { name, category, description, price } = req.body;
 
-console.log("reqqqq__________", req.file)
-    // const images = req.files as Express.Multer.File[];
-    // const product = {
-    //     ...req.body,
-    //     images: images?.map((image) => ({
-    //         filename: image.filename,
-    //         originalname: image.originalname,
-    //         path: image.path,
-    //         mimetype: image.mimetype,
-    //     })),
-    // }
+    const images = req.files;
+    const product = {
+        ...req.body,
+        images: images?.map((image) => (image.firebaseUrl)),
+    }
 
-        // if(!name || !category || !description ||!price || !images.length) {
-        //     throw new ApiError(
-        //         "you need to fill in these mandatory information",
-        //         500
-        //     );
-        // } else {
-        //     return ProductRepository.create(product);
-        // }
+        if(!name || !category || !description ||!price || !images.length) {
+            throw new ApiError(
+                "you need to fill in these mandatory information",
+                500
+            );
+        } else {
+            return ProductRepository.create(product);
+        }
     }
 
     async findAll(req: Request) {
         const products = await ProductRepository.find();
         return products.map((product) =>({
-            ...product.toObject(),
-            images: product.images.map((image) => `${req.protocol}://${req.get('host')}/uploads/${image.filename}`)
+            ...product.toObject()
 
         }))
     }

@@ -1,13 +1,7 @@
-
-const serviceAccount = require("../config/firebase-data.json")
-
-
-
+const serviceAccount = require("../config/firebase-data.json");
 
 let admin = require("firebase-admin");
-
-const BUCKET = "afro-home.appspot.com"
-
+const BUCKET = "afro-home.appspot.com";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -16,36 +10,40 @@ admin.initializeApp({
 
 const bucket = admin.storage().bucket();
 
-const uploadImage = (req, res, next) => {
+const uploadImages = async (req, res, next) => {
+  if (!req.files || req.files.length === 0) return next();
 
-  if (!req.file) return next();
+  const uploadPromises = req.files.map((imagem) => {
+    const nomeArquivo = Date.now() + "." + imagem.originalname.split(".").pop();
+    const file = bucket.file(nomeArquivo);
 
-  const imagem = req.file;
-  const nomeArquivo = Date.now() + "." + imagem.originalname.split(".").pop();
+    const stream = file.createWriteStream({
+      metadata: {
+        contentType: imagem.mimetype,
+      },
+    });
 
-  const file = bucket.file(nomeArquivo);
+    stream.on("error", (e) => {
+      console.error(e);
+    });
 
-  const stream = file.createWriteStream({
-    metadata: {
-      contentType: imagem.mimetype,
-    },
+    return new Promise<void>((resolve, reject) => {
+      stream.on("finish", async () => {
+        // Tornar o arquivo público
+        await file.makePublic();
+
+        // Obter a URL pública
+        imagem.firebaseUrl = `https://storage.googleapis.com/${BUCKET}/${nomeArquivo}`;
+        resolve();
+      });
+
+      stream.end(imagem.buffer);
+    });
   });
 
-  stream.on("error", (e) => {
-    console.error(e);
-  });
+  await Promise.all(uploadPromises);
 
-  stream.on("finish", async () => {
-    //tornar o arquivo publico
-    await file.makePublic();
-
-    //obter a url publica
-    req.file.firebaseUrl = `https://storage.googleapis.com/${BUCKET}/${nomeArquivo}`;
-
-    next();
-  });
-
-  stream.end(imagem.buffer);
+  next();
 };
 
-module.exports = uploadImage;
+module.exports = uploadImages;
