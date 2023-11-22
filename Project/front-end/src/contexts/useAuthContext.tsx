@@ -5,12 +5,12 @@ import { useToast } from "./useToast";
 
 
 
-interface authInterface {
+interface AuthInterface {
   name?: string;
   email: string;
   password:string;
 }
-  interface UserData extends authInterface {
+  interface UserData extends AuthInterface {
     id: string | number;
     role: string;
   }
@@ -22,8 +22,8 @@ interface authInterface {
   
 interface AuthContextValue {
     loading: boolean;
-    signUp: (data: authInterface) => void;
-    signIn: (data:authInterface) => void;
+    signUp: (data: AuthInterface) => void;
+    signIn: (data:AuthInterface) => void;
     logout: () => void;
     user: UserData;
     token: string
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   })
 
-    const signUp = async (data: authInterface) => {
+    const signUp = async (data: AuthInterface) => {
       setLoading(true)
       try {
         const response = await afroHomeApi.post("/users", data);
@@ -66,7 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
-    const signIn = async(data : authInterface) => {
+    const signIn = async(data : AuthInterface) => {
       setLoading(true)
       try {
         const response = await afroHomeApi.post("/auth/login", data)

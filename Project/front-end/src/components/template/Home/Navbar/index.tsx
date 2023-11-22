@@ -106,7 +106,7 @@ export default function Navbar() {
 
             <div className="nav_menu">
                 <ul className="nav_list">
-                      { !user ?
+                      { !!user ?
                       <Dropdown contentWidth="100" renderContent={() => (
                         <div style={{
                           padding: '8px'
@@ -127,7 +127,7 @@ export default function Navbar() {
                           }}><AiOutlineLogout/> Logout</span>
                         </div>
                       )}>
-                        <small>{user.name}</small>
+                        <small>{user?.name}</small>
                       </Dropdown>
 
                       :
