@@ -12,7 +12,6 @@ export function CheckAuth({ children }: any) {
   const location = useLocation();
   const { token } = useAuthContext();
   const authenticate = !!token;
-
   return authenticate ? children : <Navigate to={{pathname: "/login"}} state={location.pathname} replace />
 }
 

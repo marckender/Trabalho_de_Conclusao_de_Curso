@@ -29,7 +29,6 @@ export default function Navbar() {
         console.log("estou")
         setIsDrawerOpen(false);
       };
-    // const navigate = useNavigate();
     const handleSearch = (searchText: string) => {
         console.log(searchText)
         // Call your search API or perform the search logic here
@@ -60,7 +59,7 @@ export default function Navbar() {
             <div className="nav_menu">
                 <ul className="nav_list">
                     <Link to="/login"><HiUserCircle /> Login</Link>
-                    <Link to="/login"><BsCart3/> <span className="nav_cart_count"> 0</span></Link>
+                    <Link to="/carts"><BsCart3/> <span className="nav_cart_count"> 0</span></Link>
                 </ul>
             </div>
         </Drawer>
@@ -107,7 +106,7 @@ export default function Navbar() {
 
             <div className="nav_menu">
                 <ul className="nav_list">
-                      { !!user ?
+                      { !user ?
                       <Dropdown contentWidth="100" renderContent={() => (
                         <div style={{
                           padding: '8px'
@@ -141,7 +140,7 @@ export default function Navbar() {
                     </Link>
                     }
 
-                    <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
+                    <Link to="/carts"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
                    
                 </ul>
             </div>
