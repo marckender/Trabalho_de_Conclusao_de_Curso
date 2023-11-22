@@ -18,7 +18,7 @@ export function CheckAuth({ children }: any) {
 
 export function IsAdmin({children}: any) {
   const { user } = useAuthContext();
-  return user && user.role === "Admin" ? children : <Navigate to="/login" />;
+  return user && user.role === "admin" ? children : <Navigate to="/" />;
 }
 
 export function PrincipalRoutes() {

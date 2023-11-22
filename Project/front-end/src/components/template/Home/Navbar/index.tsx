@@ -14,6 +14,8 @@ import { PiShoppingCartThin } from "react-icons/pi"
 import "./styles.scss"
 import { useAuthContext } from "../../../../contexts/useAuthContext"
 import Dropdown from "../../../UI/atoms/Dropdown"
+import { RxDashboard } from "react-icons/rx";
+
 
 export default function Navbar() {
   const {user, logout} = useAuthContext();
@@ -111,6 +113,14 @@ export default function Navbar() {
                         <div style={{
                           padding: '8px'
                         }}>
+
+                          <span style={{
+                            display: 'flex',
+                            gap: '8px'
+                          }}>
+                          <Link to="/dashboard">
+                          <RxDashboard />Go to Admin</Link>
+                          </span>
                           
                           <hr />
                           <span onClick={()=>logout()} style={{
@@ -135,7 +145,9 @@ export default function Navbar() {
                     </Link>
                       </>
                     }
+
                     <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
+                   
                 </ul>
             </div>
         </nav>
