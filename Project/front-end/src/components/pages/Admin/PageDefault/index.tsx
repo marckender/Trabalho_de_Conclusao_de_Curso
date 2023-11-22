@@ -296,7 +296,7 @@ export const PageDefault: React.FC<PageDefaultProps> = ({children}) =>{
         </DrawerHeader>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Inbox', 'Starred', 'Send email', 'Drafts'].map(text => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                Icon
