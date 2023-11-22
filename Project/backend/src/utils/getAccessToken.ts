@@ -23,6 +23,7 @@ const getAccessToken = async (user: IUser)=> {
             _id: user._id,
             name: user.name,
             email:user.email,
+            role:user.role
         }
     }
     await userAction.findByIdAndUpdate(user._id,  {

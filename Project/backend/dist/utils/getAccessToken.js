@@ -24,6 +24,7 @@ const getAccessToken = (user) => __awaiter(void 0, void 0, void 0, function* () 
             _id: user._id,
             name: user.name,
             email: user.email,
+            role: user.role
         }
     };
     yield user_action_1.default.findByIdAndUpdate(user._id, {
