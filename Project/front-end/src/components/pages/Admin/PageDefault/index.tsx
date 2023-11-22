@@ -10,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import AdminSidebar from '../../../template/Admin/Sidebar';
 import AdminNavbar from '../../../template/Admin/Navbar';
-import { useAuthContext } from '../../../../contexts/useAuthContext';
 
 const drawerWidth = 230;
 
@@ -72,8 +71,6 @@ interface PageDefaultProps {
 export const PageDefault: React.FC<PageDefaultProps> = ({children}) =>{
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-
-  const {user} = useAuthContext();
 
   const handleDrawerOpen = () => {
     setOpen(true);
