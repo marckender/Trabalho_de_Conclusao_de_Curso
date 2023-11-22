@@ -108,7 +108,6 @@ export default function Navbar() {
             <div className="nav_menu">
                 <ul className="nav_list">
                       { !!user ?
-                      <>
                       <Dropdown contentWidth="100" renderContent={() => (
                         <div style={{
                           padding: '8px'
@@ -118,7 +117,7 @@ export default function Navbar() {
                             display: 'flex',
                             gap: '8px'
                           }}>
-                          <Link to="/dashboard">
+                          <Link to="/admin/dashboard">
                           <RxDashboard />Go to Admin</Link>
                           </span>
                           
@@ -131,11 +130,8 @@ export default function Navbar() {
                       )}>
                         <small>{user.name}</small>
                       </Dropdown>
-                         
-                      </>
 
                       :
-                      <>
                     <Link to="/login">
                       <small style={{
                         display: 'flex',
@@ -143,7 +139,6 @@ export default function Navbar() {
                         gap: '8px'
                       }}>Login <FaRegUser /></small>
                     </Link>
-                      </>
                     }
 
                     <Link to="/login"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
