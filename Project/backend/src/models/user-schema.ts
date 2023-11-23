@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema(
     name: { required: true, type: String },
     email: { required: true, type: String, unique: true },
     role: { required: true, type: String, default: UserRole.CLIENT },
+    address: { type: String },
     password: { type: String },
     token: { type: String },
     resetPasswordToken: { type: Number },
