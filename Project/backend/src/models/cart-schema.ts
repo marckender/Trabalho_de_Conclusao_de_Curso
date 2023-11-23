@@ -8,8 +8,8 @@ const CartSchema = new mongoose.Schema(
         {
             productId: { type: String, required: true },
             qty: { type: Number, required: true,default: 1 },
-            density:  [{type: Number}],
-             color: [{ type: String }],
+            density:  {type: Number},
+             color: { type: String },
         }
     ],
     userId: {
