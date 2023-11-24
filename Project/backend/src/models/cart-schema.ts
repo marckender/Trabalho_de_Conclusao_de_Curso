@@ -4,23 +4,17 @@ import { v4 as uuidV4 } from "uuid";
 const CartSchema = new mongoose.Schema(
   {
     _id: { required: true, type: String, default: () => uuidV4() },
-    items: [
+    products: [
         {
             productId: { type: String, required: true },
-            name: { type: String, required: true },
-            qty: { type: Number, required: true },
-            price: { type: Number, required: true },
-
+            qty: { type: Number, required: true,default: 1 },
+            density:  {type: Number},
+             color: { type: String },
         }
     ],
     userId: {
         required: true,
         type: String
-    },
-    quantity: {
-        required: true,
-        type: Number,
-        default: 1
     },
     totalCost:{
         type: Number,
