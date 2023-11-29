@@ -35,7 +35,7 @@ class AuthMiddleware {
                         if (!user) {
                             return response_dto_1.default.httpErrorResponse(res, "User not authenticated. Please, sign in or create an account.", 401);
                         }
-                        req.userId = user === null || user === void 0 ? void 0 : user._id;
+                        req.user_id = user === null || user === void 0 ? void 0 : user._id;
                         req.token = user.token;
                         req.role = user.role;
                         next();

@@ -34,7 +34,7 @@ class AuthMiddleware {
                     401
                 );
                 }
-                req.userId = user?._id;
+                req.user_id = user?._id;
                 req.token = user.token;
                 req.role = user.role;
                 next();
