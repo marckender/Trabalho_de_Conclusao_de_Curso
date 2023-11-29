@@ -13,8 +13,8 @@ const ProductSchema = new mongoose.Schema(
     brand: {type: String},
     lenght: [{ type: String }],
     density:  [{type: Number}],
-    createdAt: { type: Date, default: new Date() },
-    updatedAt: { type: Date, default: new Date() },
+    created_at: { type: Date, default: new Date() },
+    updated_at: { type: Date, default: new Date() },
   },
   {
     versionKey: false,
