@@ -5,36 +5,36 @@ class CartAction {
     async create(body: any) {
         try {
             
-            const products = body.body.items
-            const userId:string = body.userId
-            let cart = await cartRepository.findOne({userId})
+            const products = body.body.products
+            const user_id:string = body.user_id
+            let cart = await cartRepository.findOne({user_id})
     
             if (!cart) {
                 cart = new cartRepository({
-                    userId,
-                    items: [],
-                    totalCost: 0,
+                    user_id,
+                    products: [],
+                    total_cost: 0,
                 });
             }
 
             for (const product of products) {
-                if (!product.productId || !product.name || !product.qty || !product.price) {
+                if (!product.product_id || !product.name || !product.qty) {
                   throw new ApiError(
                     "Product ID, name, quantity, and price are required for each product",
                     500
                   );
                 }
           
-                const existingItem = cart.items.find((item) => item.productId === product.productId);
+                const existingItem = cart.products.find((item) => item.product_id === product.product_id);
           
                 if (existingItem) {
                   existingItem.qty += product.qty;
-                  existingItem.price += product.price * product.qty;
+                  // existingItem.price += product.price * product.qty;
                 } else {
-                  cart.items.push(product);
+                  cart.products.push(product);
                 }
           
-                cart.totalCost += Number(product.price) * Number(product.qty);
+                cart.total_cost += Number(product.price) * Number(product.qty);
             }
           
     
