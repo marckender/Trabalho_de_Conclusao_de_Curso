@@ -1,4 +1,4 @@
 import * as mongoose from "mongoose";
-import UserSchema from "../models/user-schema";
+import CategorySchema from "../models/user-schema";
 
-export default mongoose.model("users", UserSchema);
+export default mongoose.model("categories", CategorySchema);

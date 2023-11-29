@@ -1,4 +1,4 @@
 export enum ProductCategory {
-    LACE = "Lace",
-    BRAID = "Braid",
+    LACE = "LACE",
+    BRAID = "BRAID",
 }

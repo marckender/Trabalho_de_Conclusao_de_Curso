@@ -1,8 +1,7 @@
 import * as mongoose from "mongoose";
 import { v4 as uuidV4 } from "uuid";
-import { UserRole } from "../enums/user-enum";
 
-const UserSchema = new mongoose.Schema(
+const CategorySchema = new mongoose.Schema(
   {
     _id: { required: true, type: String, default: () => uuidV4() },
     name: { required: true, type: String, unique: true },
@@ -15,4 +14,4 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-export default UserSchema;
+export default CategorySchema;

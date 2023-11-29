@@ -1,9 +1,11 @@
 import * as mongoose from "mongoose";
 import { v4 as uuidV4 } from "uuid";
+import { OrderStatus } from "../enums/Order-enum";
 
-const CartSchema = new mongoose.Schema(
+const OrderSchema = new mongoose.Schema(
   {
     _id: { required: true, type: String, default: () => uuidV4() },
+    order_number: {required: true, type: Number, unique: true},
     products: [
         {
             productId: { type: String, required: true },
@@ -21,6 +23,7 @@ const CartSchema = new mongoose.Schema(
         required: true,
         default: 0
     },
+    Status: {type:String, required: true, default: OrderStatus.PENDENTE},
     created_at: { type: Date, default: new Date() },
     updated_at: { type: Date, default: new Date() },
   },
@@ -29,4 +32,4 @@ const CartSchema = new mongoose.Schema(
   }
 );
 
-export default CartSchema;
+export default OrderSchema;

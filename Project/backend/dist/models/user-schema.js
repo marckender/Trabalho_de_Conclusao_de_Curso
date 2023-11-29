@@ -8,12 +8,13 @@ const UserSchema = new mongoose.Schema({
     name: { required: true, type: String },
     email: { required: true, type: String, unique: true },
     role: { required: true, type: String, default: user_enum_1.UserRole.CLIENT },
+    address: { type: String },
     password: { type: String },
     token: { type: String },
-    resetPasswordToken: { type: Number },
-    resetPasswordTime: { type: Date },
-    createdAt: { type: Date, default: new Date() },
-    updatedAt: { type: Date, default: new Date() },
+    reset_password_token: { type: Number },
+    reset_password_time: { type: Date },
+    created_at: { type: Date, default: new Date() },
+    updated_at: { type: Date, default: new Date() },
 }, {
     versionKey: false,
 });
