@@ -14,7 +14,7 @@ interface AuthInterface {
     id: string | number;
     role: string;
   }
-  
+
   interface AuthState {
     token: string;
     user: UserData;

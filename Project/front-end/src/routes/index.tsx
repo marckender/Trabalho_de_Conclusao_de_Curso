@@ -1,11 +1,11 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-// import PrivateRoutes from "./PrivatesRoutes";
 import HomePage from "../components/pages/Home/Home";
 import Login from "../components/pages/Home/Login";
 import { useAuthContext } from "../contexts/useAuthContext";
 import AdminRoutes from "./AdminRoutes";
 import PrivateRoutes from "./PrivatesRoutes";
 import Details from "../components/pages/Details";
+import { UserRoleEnum} from "../utils/user-enum";
 
 
 export function CheckAuth({ children }: any) {
@@ -17,7 +17,7 @@ export function CheckAuth({ children }: any) {
 
 export function IsAdmin({children}: any) {
   const { user } = useAuthContext();
-  return user && user.role === "admin" ? children : <Navigate to="/" />;
+  return user && user.role === UserRoleEnum.ADMIN? children : <Navigate to="/" />;
 }
 
 export function PrincipalRoutes() {
@@ -27,9 +27,6 @@ export function PrincipalRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/details/:id" element={<Details />} />
       <Route path="/login" element={<Login />} />
-      {/* <Route path="/promotion" element={<Promotion />}/>
-      <Route path="/products/:id" element={<Detail />} />
-      <Route path="/search" element={<Search />} />*/}
       <Route 
         path="/*" 
         element={

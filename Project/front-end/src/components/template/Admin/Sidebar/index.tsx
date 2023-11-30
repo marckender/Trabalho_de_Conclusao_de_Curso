@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { LuLayoutDashboard } from "react-icons/lu"
 import { MdOutlineProductionQuantityLimits } from "react-icons/md"
 import "./styles.scss"
+import { FaUsers } from "react-icons/fa";
 
 function AdminSidebar() {
 
@@ -22,6 +23,9 @@ function AdminSidebar() {
             </li>
             <li>
                 <Link to="/admin/products"> <button className={`${lastPart === 'products' ? 'btn_dashboard' : ''}`}><MdOutlineProductionQuantityLimits/> Products</button></Link>
+            </li>
+            <li>
+                <Link to="/admin/users"> <button className={`${lastPart === 'users' ? 'btn_dashboard' : ''}`}><FaUsers /> Users</button></Link>
             </li>
            
         </ul>

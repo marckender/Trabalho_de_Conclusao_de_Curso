@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { useUserContext } from "../../../../contexts/useUserContext";
 import CustomTable from "../../../UI/molecules/CustomTable";
 import { PageDefault } from "../PageDefault";
 import { TableCell, TableRow, styled, tableCellClasses } from "@mui/material";
 import { MdDeleteSweep } from "react-icons/md";
-import { useProductContext } from "../../../../contexts/useProductContext";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -30,51 +30,43 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 },
 }));
 
-export default function ProductsAdminPage() {
+export default function UsersAdminPage() {
 
-  const {products, getProducts, loading} = useProductContext()
+  const {users, getUsers, loading} = useUserContext()
 
   const headers = ['ID',
     'Name',
-    'Description',
-    "Category",
-    'Price',
-    'Discount',
+    'Email',
+    'Role',
+    'Address',
     "Creation Date",
     "Actions"
   ];
 
   useEffect(() => {
-    getProducts()
+    getUsers()
   }, [])
   
 
   return (
     <PageDefault>
         <CustomTable headers={headers} itemsPerPage={36} totalItems={15} handlePageChange={()=> window.alert("Not Implemented")} loading={loading}>
-          {products?.map((row:any) => (
+          {users?.map((row:any) => (
           <StyledTableRow key={row.id}>
               <StyledTableCell align="left">
-                  <img src={row.images[0]} alt="" style={{
-                  width: '50px',
-                  height: '50px',
-                  borderRadius: '50%'
-                }}/>
+                  {row.id}
               </StyledTableCell>
               <StyledTableCell align="left">
                   {row.name}
               </StyledTableCell>
               <StyledTableCell align="left">
-                  {row.description}
+                  {row.email}
               </StyledTableCell>
               <StyledTableCell align="left">
-                  {row.category}
+                  {row.role}
               </StyledTableCell>
               <StyledTableCell align="left">
-                  {`${row.price}$`}
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                  {row.discount}
+                  {row.address}
               </StyledTableCell>
               <StyledTableCell align="left">
                   {row.updated_at}
