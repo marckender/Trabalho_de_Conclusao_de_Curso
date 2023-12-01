@@ -5,7 +5,7 @@ const uuid_1 = require("uuid");
 const ProductSchema = new mongoose.Schema({
     _id: { required: true, type: String, default: () => (0, uuid_1.v4)() },
     name: { type: String, required: true },
-    category: { type: String, required: true },
+    categoryId: { type: String, required: true },
     price: { type: Number, required: true },
     description: { type: String, required: true },
     discount: { type: Number },

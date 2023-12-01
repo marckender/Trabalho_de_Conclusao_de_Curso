@@ -32,6 +32,15 @@ class CategoryAction {
             return yield category_repository_1.default.find();
         });
     }
+    delete(categoryId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const ifCategoryExist = yield category_repository_1.default.findById(categoryId);
+            if (ifCategoryExist) {
+                return yield category_repository_1.default.findByIdAndRemove(categoryId);
+            }
+            throw new api_error_1.default("Category not Exists!", 500);
+        });
+    }
 }
 exports.default = new CategoryAction();
 //# sourceMappingURL=category-actions.js.map

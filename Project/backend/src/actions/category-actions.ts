@@ -22,6 +22,14 @@ class CategoryAction {
     async findAll() {
         return await categoryRepository.find();
     }
+
+    async delete(categoryId: string) {
+        const ifCategoryExist = await categoryRepository.findById(categoryId);
+        if (ifCategoryExist) {
+            return await categoryRepository.findByIdAndRemove(categoryId);
+        }
+        throw new ApiError("Category not Exists!", 500);
+      }
 }
 
 export default new CategoryAction();
