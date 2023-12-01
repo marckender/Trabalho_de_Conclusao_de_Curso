@@ -20,7 +20,13 @@ class CategoryAction {
                 if (ifCategoryExist) {
                     throw new api_error_1.default("Category already exists !", 500);
                 }
-                return yield category_repository_1.default.create(body);
+                if (!category_name.trim()) {
+                    throw new api_error_1.default("Category name is required !", 500);
+                }
+                return yield category_repository_1.default.create({
+                    name: category_name,
+                    SLUG: category_name === null || category_name === void 0 ? void 0 : category_name.toUpperCase()
+                });
             }
             catch (error) {
                 throw new api_error_1.default(error.message, 500);
@@ -43,9 +49,17 @@ class CategoryAction {
     }
     update(_id, body) {
         return __awaiter(this, void 0, void 0, function* () {
+            const category_name = body.name;
             const ifExist = yield category_repository_1.default.findById(_id);
             if (ifExist) {
-                return yield category_repository_1.default.findByIdAndUpdate(_id, Object.assign(Object.assign({}, body), { updatedAt: new Date() }));
+                if (!category_name.trim()) {
+                    throw new api_error_1.default("Category name is required !", 500);
+                }
+                return yield category_repository_1.default.findByIdAndUpdate(_id, {
+                    name: category_name,
+                    SLUG: category_name === null || category_name === void 0 ? void 0 : category_name.toUpperCase(),
+                    updatedAt: new Date(),
+                });
             }
             throw new api_error_1.default("Category not found!", 500);
         });
