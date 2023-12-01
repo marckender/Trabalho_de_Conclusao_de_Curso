@@ -18,6 +18,10 @@ class CategoryAction {
             );
         }
     }
+
+    async findAll() {
+        return await categoryRepository.find();
+    }
 }
 
 export default new CategoryAction();

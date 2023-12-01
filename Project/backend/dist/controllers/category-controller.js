@@ -26,6 +26,19 @@ class CategoryController {
             }
         });
     }
+    findAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield category_actions_1.default.findAll();
+                api_logger_1.default.info(`[CategoryController] - findAll - response => ${JSON.stringify(response)}`);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
+            }
+            catch (error) {
+                api_logger_1.default.info(`[CategoryController] - findAll - error => ${error}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
 }
 exports.default = new CategoryController();
 //# sourceMappingURL=category-controller.js.map

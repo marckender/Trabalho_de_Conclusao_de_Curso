@@ -27,6 +27,11 @@ class CategoryAction {
             }
         });
     }
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield category_repository_1.default.find();
+        });
+    }
 }
 exports.default = new CategoryAction();
 //# sourceMappingURL=category-actions.js.map

@@ -14,6 +14,17 @@ class CategoryController {
             ResponseDto.httpErrorResponse(res, error);
         }
     }
+
+    async findAll(req, res) {
+        try {
+          const response = await categoryActions.findAll();
+          apiLogger.info(`[CategoryController] - findAll - response => ${JSON.stringify(response)}`);
+          ResponseDto.httpSuccessResponse(res, 201, response);
+        } catch (error) {
+          apiLogger.info(`[CategoryController] - findAll - error => ${error}`);
+          ResponseDto.httpErrorResponse(res, error);
+        }
+      }
 }
 
 export default new CategoryController();
