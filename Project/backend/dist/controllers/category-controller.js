@@ -13,9 +13,6 @@ const response_dto_1 = require("../dtos/response.dto");
 const api_logger_1 = require("../utils/api-logger");
 const category_actions_1 = require("../actions/category-actions");
 class CategoryController {
-    // delete(arg0: string, isAuth: (req: any, res: any, next: any) => Promise<void>, isAdmin: (req: any, res: any, next: any) => Promise<void>, delete: any) {
-    //     throw new Error("Method not implemented.");
-    // }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -46,11 +43,22 @@ class CategoryController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 api_logger_1.default.info(`[CategoryController] - delete - CategoryID => ${req.params.id}`);
-                const result = yield category_actions_1.default.delete(req.params.id);
-                response_dto_1.default.httpSuccessResponse(res, 201, result);
+                const response = yield category_actions_1.default.delete(req.params.id);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
             }
             catch (error) {
                 api_logger_1.default.error(`[CategoryController] - deleteCategory - error => ${JSON.stringify(error)}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield category_actions_1.default.update(req.params.id, req.body);
+                response_dto_1.default.httpSuccessResponse(res, 201, response);
+            }
+            catch (error) {
                 response_dto_1.default.httpErrorResponse(res, error);
             }
         });

@@ -4,9 +4,7 @@ import apiLogger from "../utils/api-logger";
 import CategoryActions from "../actions/category-actions";
 
 class CategoryController {
-    // delete(arg0: string, isAuth: (req: any, res: any, next: any) => Promise<void>, isAdmin: (req: any, res: any, next: any) => Promise<void>, delete: any) {
-    //     throw new Error("Method not implemented.");
-    // }
+
     async create(req: Request, res: Response) {
         try {
             const response = await CategoryActions.create(req.body);
@@ -32,15 +30,24 @@ class CategoryController {
     async delete(req, res) {
         try {
           apiLogger.info(`[CategoryController] - delete - CategoryID => ${req.params.id}`);
-          const result = await CategoryActions.delete(req.params.id);
-          ResponseDto.httpSuccessResponse(res, 201, result);
+          const response = await CategoryActions.delete(req.params.id);
+          ResponseDto.httpSuccessResponse(res, 201, response);
         } catch (error) {
           apiLogger.error(
             `[CategoryController] - deleteCategory - error => ${JSON.stringify(error)}`
           );
           ResponseDto.httpErrorResponse(res, error);
         }
-      }
+    }
+
+    async update(req, res) {
+        try {
+            const response = await CategoryActions.update(req.params.id, req.body);
+            ResponseDto.httpSuccessResponse(res, 201, response);
+          } catch (error) {
+            ResponseDto.httpErrorResponse(res, error);
+          }
+    }
 
     
 }

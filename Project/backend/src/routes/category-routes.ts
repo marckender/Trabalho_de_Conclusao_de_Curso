@@ -8,6 +8,7 @@ const categoryRoutes = express.Router();
 categoryRoutes
         .post("/api/categories", authMiddleware.isAuth, authMiddleware.isAdmin, categoryController.create)
         .get("/api/categories", categoryController.findAll)
-        .delete("/api/categories/:id", authMiddleware.isAuth, authMiddleware.isAdmin, categoryController.delete);
+        .delete("/api/categories/:id", authMiddleware.isAuth, authMiddleware.isAdmin, categoryController.delete)
+        .put("/api/categories/:id", authMiddleware.isAuth, authMiddleware.isAdmin, categoryController.update);
 
 export default categoryRoutes;

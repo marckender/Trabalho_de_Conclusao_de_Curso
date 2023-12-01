@@ -29,7 +29,19 @@ class CategoryAction {
             return await categoryRepository.findByIdAndRemove(categoryId);
         }
         throw new ApiError("Category not Exists!", 500);
-      }
+    }
+
+    async update(_id: string, body: any) {
+        const ifExist = await categoryRepository.findById(_id);
+
+        if (ifExist) {
+            return await categoryRepository.findByIdAndUpdate(_id, {
+                ...body,
+                updatedAt: new Date(),
+              });
+        }
+        throw new ApiError("Category not found!", 500);
+    }
 }
 
 export default new CategoryAction();

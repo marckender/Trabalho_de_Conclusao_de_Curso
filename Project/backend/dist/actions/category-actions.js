@@ -41,6 +41,15 @@ class CategoryAction {
             throw new api_error_1.default("Category not Exists!", 500);
         });
     }
+    update(_id, body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const ifExist = yield category_repository_1.default.findById(_id);
+            if (ifExist) {
+                return yield category_repository_1.default.findByIdAndUpdate(_id, Object.assign(Object.assign({}, body), { updatedAt: new Date() }));
+            }
+            throw new api_error_1.default("Category not found!", 500);
+        });
+    }
 }
 exports.default = new CategoryAction();
 //# sourceMappingURL=category-actions.js.map
