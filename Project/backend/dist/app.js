@@ -13,6 +13,7 @@ const user_routes_1 = require("./routes/user-routes");
 const auth_routes_1 = require("./routes/auth-routes");
 const product_routes_1 = require("./routes/product-routes");
 const cart_routes_1 = require("./routes/cart-routes");
+const category_routes_1 = require("./routes/category-routes");
 class AfroHome {
     constructor() {
         this.app = express();
@@ -30,6 +31,7 @@ class AfroHome {
         this.app.use("/", auth_routes_1.default);
         this.app.use("/", product_routes_1.default);
         this.app.use("/", cart_routes_1.default);
+        this.app.use("/", category_routes_1.default);
     }
     listen(port) {
         this.app.listen(port, () => {

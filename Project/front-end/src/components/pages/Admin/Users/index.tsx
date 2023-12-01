@@ -4,6 +4,7 @@ import CustomTable from "../../../UI/molecules/CustomTable";
 import { PageDefault } from "../PageDefault";
 import { TableCell, TableRow, styled, tableCellClasses } from "@mui/material";
 import { MdDeleteSweep } from "react-icons/md";
+import { UserRoleEnum } from "../../../../utils/user-enum";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -72,7 +73,9 @@ export default function UsersAdminPage() {
                   {row.updated_at}
               </StyledTableCell>
               <StyledTableCell align="left">
+                {row.role === UserRoleEnum.CLIENT &&
                 <MdDeleteSweep color="red"/>
+                }
               </StyledTableCell>
 
               

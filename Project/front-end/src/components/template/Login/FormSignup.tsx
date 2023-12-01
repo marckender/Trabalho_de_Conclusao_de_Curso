@@ -8,17 +8,19 @@ const { signUp, loading } = useAuthContext()
 
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    signUp({name,email, password});
+    signUp({name,email, password, address});
   };
 
   return (
     <form onSubmit={handleSubmit}>
         <BaseInput label="Nom" type='text' value={name} onChange={e =>setName(e)} />
         <BaseInput label="Email" type='text' value={email} onChange={e =>setEmail(e)} />
+        <BaseInput label="Address" type='text' value={address} onChange={e =>setAddress(e)} />
         <BaseInput label="Password" type='password' value={password} onChange={e =>setPassword(e)} />
         <BaseButton 
           disabled={loading || !name || !email || !password} loading={loading} label='Sign Up' background='#ff4747' width={100} onClick={handleSubmit}/>

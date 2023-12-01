@@ -8,6 +8,7 @@ import { useToast } from "./useToast";
 interface AuthInterface {
   name?: string;
   email: string;
+  address?: string
   password:string;
 }
   interface UserData extends AuthInterface {
