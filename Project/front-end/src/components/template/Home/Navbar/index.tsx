@@ -15,6 +15,7 @@ import "./styles.scss"
 import { useAuthContext } from "../../../../contexts/useAuthContext"
 import Dropdown from "../../../UI/atoms/Dropdown"
 import { RxDashboard } from "react-icons/rx";
+import { UserRoleEnum } from "../../../../utils/user-enum"
 
 
 export default function Navbar() {
@@ -112,17 +113,24 @@ export default function Navbar() {
                           padding: '8px'
                         }}>
 
-                          <span style={{
-                            display: 'flex',
-                            gap: '8px'
-                          }}>
-                          <Link to="/admin/dashboard">
-                          <RxDashboard />Go to Admin</Link>
-                          </span>
+                          {user.role === UserRoleEnum.ADMIN &&
+                            <>
+                              <span style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                              }}>
+                              <Link to="/admin/dashboard">
+                              <RxDashboard />Go to Admin</Link>
+                              </span>
+                            <hr />
+                            </>
+                          }
+
                           
-                          <hr />
                           <span onClick={()=>logout()} style={{
                             display: 'flex',
+                            alignItems: 'center',
                             gap: '8px'
                           }}><AiOutlineLogout/> Logout</span>
                         </div>
