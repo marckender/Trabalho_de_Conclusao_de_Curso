@@ -27,7 +27,6 @@ export default function Navbar() {
     };
 
     const handleCloseDrawer = () => {
-        console.log("estou")
         setIsDrawerOpen(false);
       };
     const handleSearch = (searchText: string) => {

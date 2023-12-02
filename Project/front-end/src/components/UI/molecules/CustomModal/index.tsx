@@ -13,7 +13,6 @@ interface CustomModalProps {
     widthBtnCancel?: string;
     onClickBtnConfirm?(): void;
     onClickBtnCancel?(): void;
-    size?: number;
     loading?: boolean;
     children: React.ReactNode;
     sender_value?: string;
@@ -30,7 +29,6 @@ export const CustomModal: React.FC<CustomModalProps> = ({
     widthBtnCancel = '150px',
     onClickBtnConfirm,
     onClickBtnCancel,
-    size = 800,
     loading = false,
     children,
     received_value,
@@ -101,7 +99,6 @@ export const CustomModal: React.FC<CustomModalProps> = ({
                             backgroundColor="#EC4256"
                             width={widthBtnConfirm}
                             onClick={() => {
-                                // setOpen(false);
                                 onClickBtnConfirm && onClickBtnConfirm();
                             }}
                             isLoading={loading}
