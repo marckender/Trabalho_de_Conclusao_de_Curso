@@ -54,9 +54,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const signUp = async (data: AuthInterface) => {
       setLoading(true)
       try {
-        const response = await afroHomeApi.post("/users", data);
-        console.log(response)
-        successToast(response.data.message);
+        await afroHomeApi.post("/users", data);
+        successToast("Your Account has been Successfully Created !")
+
         window.location.reload();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {

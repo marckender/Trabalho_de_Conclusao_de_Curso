@@ -9,11 +9,8 @@ function AdminSidebar() {
     const location = useLocation()
     const pathname = location.pathname;
 
-  
     const parts = pathname.split('/');
     const lastPart = parts[parts.length - 1];
-
-    console.log(lastPart)
 
   return (
     <div className="admin_sidebar">
@@ -26,6 +23,9 @@ function AdminSidebar() {
             </li>
             <li>
                 <Link to="/admin/users"> <button className={`${lastPart === 'users' ? 'btn_dashboard' : ''}`}><FaUsers /> Users</button></Link>
+            </li>
+            <li>
+                <Link to="/admin/categories"> <button className={`${lastPart === 'categories' ? 'btn_dashboard' : ''}`}><FaUsers /> Categories</button></Link>
             </li>
            
         </ul>

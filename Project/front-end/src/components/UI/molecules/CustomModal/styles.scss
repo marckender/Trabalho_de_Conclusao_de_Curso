@@ -1,0 +1,41 @@
+.__modal_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 3px;
+    flex-direction: column;
+    border: none;
+
+    .__modal-title {
+        text-align: left;
+        font-size: 18px;
+        color: #707070;
+        opacity: 1;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .__description {
+        text-align: left;
+        font-size: 16px;
+        color: #707070;
+        opacity: 1;
+        max-height: 70vh;
+        height: 100%;
+        min-height: 35vh;
+    }
+
+    .simple_modal_buttons {
+        display: flex;
+        justify-content: right;
+        align-items: end;
+
+        button {
+            margin-left: 20px;
+
+            span {
+                text-transform: none;
+                font-size: 16px;
+            }
+        }
+    }
+}
