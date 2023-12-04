@@ -4,14 +4,14 @@
 https://trabalho-de-conclusao-de-curso.vercel.app/api
 
 ## ClientSide Hosting => Heroku: 
-ClienSide => no Heroku: https://afrohome.vercel.app/
+https://afrohome.vercel.app/
 
 
-# User Admin
+## User Admin
 email: makender103@gmail.com
 Password: admin
 
 
-# User Client
+## User Client
 email: userclient@userclient.com
 password:client
