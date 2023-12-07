@@ -1,9 +1,9 @@
 #Trabalho_de_Conclusao_de_Curso
 
-##  Api Hosting => Heroku: 
+##  Api Hosting => Vercel: 
 https://trabalho-de-conclusao-de-curso.vercel.app/api
 
-## ClientSide Hosting => Heroku: 
+## ClientSide Hosting => Vercel: 
 https://afrohome.vercel.app/
 
 
