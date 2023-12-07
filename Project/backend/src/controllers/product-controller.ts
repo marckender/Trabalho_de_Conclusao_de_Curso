@@ -38,7 +38,6 @@ class ProductController {
     async create(req: any, res: Response) {
         try {
             apiLogger.info(`[ProductController] - create - req.body => ${JSON.stringify(req.body)}`);
-            // apiLogger.info(`[ProductController] - create - req.body => ${JSON.stringify(req.files)}`);
             const response = await productAction.create(req);
             ResponseDto.httpSuccessResponse(res, 201, response);
           } catch (error) {

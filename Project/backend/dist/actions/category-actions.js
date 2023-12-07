@@ -64,6 +64,11 @@ class CategoryAction {
             throw new api_error_1.default("Category not found!", 500);
         });
     }
+    findById(_id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield category_repository_1.default.findById(_id);
+        });
+    }
 }
 exports.default = new CategoryAction();
 //# sourceMappingURL=category-actions.js.map

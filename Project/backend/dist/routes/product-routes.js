@@ -9,7 +9,7 @@ const Multer = multer({
     storage: multer.memoryStorage(),
 });
 const uploadImage = require("../services/firebase-services");
-const type = Multer.array('imagens');
+const type = Multer.array('images');
 productRoutes
     .post("/api/products", auth_middleware_1.default.isAuth, auth_middleware_1.default.isAdmin, type, uploadImage, product_controller_1.default.create)
     .get("/api/products", product_controller_1.default.findAll)

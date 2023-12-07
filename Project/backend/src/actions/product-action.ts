@@ -3,6 +3,7 @@ import * as express from "express"
 import ApiError from "../utils/api-error";
 import ProductRepository from "../repositories/product-repository";
 import { Request } from 'express';
+import categoryActions from "./category-actions";
 
 class ProductAction {
   async find(req: Request) {
@@ -20,15 +21,25 @@ class ProductAction {
   }
  
    async  create(req: any,) {
-    const { name, category, description, price } = req.body;
+    const { name, description, price, category_id } = req.body;
 
     const images = req.files;
+
+    const searchCategory = await categoryActions.findById(category_id)
+
+    if(!searchCategory) {
+        throw new ApiError(
+            "you need to fill an correct categoryId",
+            500
+        );
+    }
     const product = {
         ...req.body,
+        category: category_id,
         images: images?.map((image) => (image.firebaseUrl)),
     }
 
-        if(!name || !category || !description ||!price || !images.length) {
+        if(!name || !category_id || !description ||!price || !images.length) {
             throw new ApiError(
                 "you need to fill in these mandatory information",
                 500

@@ -12,7 +12,7 @@ const Multer = multer({
 
 const uploadImage = require("../services/firebase-services")
 
-const type = Multer.array('imagens');
+const type = Multer.array('images');
 
 productRoutes
   .post(

@@ -53,6 +53,10 @@ class CategoryAction {
         }
         throw new ApiError("Category not found!", 500);
     }
+
+    async findById(_id: string) {
+        return await categoryRepository.findById(_id)
+    }
 }
 
 export default new CategoryAction();
