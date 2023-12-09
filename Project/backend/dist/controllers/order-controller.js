@@ -11,17 +11,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const response_dto_1 = require("../dtos/response.dto");
 const api_logger_1 = require("../utils/api-logger");
-const cart_action_1 = require("../actions/cart-action");
-class CartController {
+const order_action_1 = require("../actions/order-action");
+class OrderController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield cart_action_1.default.create(req);
-                api_logger_1.default.error(`[CartController] - create - body - ${JSON.stringify(req.body)}`);
+                const response = yield order_action_1.default.create(req);
+                api_logger_1.default.error(`[OrderController] - create - body - ${JSON.stringify(req.body)}`);
                 response_dto_1.default.httpSuccessResponse(res, 200, response);
             }
             catch (error) {
-                api_logger_1.default.error(`[CartController] - create - error - ${JSON.stringify(error)}`);
+                api_logger_1.default.error(`[OrderController] - create - error - ${JSON.stringify(error)}`);
                 response_dto_1.default.httpErrorResponse(res, error);
             }
         });
@@ -29,29 +29,16 @@ class CartController {
     find(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield cart_action_1.default.find(req.user_id);
-                api_logger_1.default.error(`[CartController] - find - user_id - ${req.user_id}`);
+                const response = yield order_action_1.default.find(req.user_id);
+                api_logger_1.default.error(`[OrderController] - find - body - ${JSON.stringify(req.user_id)}`);
                 response_dto_1.default.httpSuccessResponse(res, 200, response);
             }
             catch (error) {
-                api_logger_1.default.error(`[CartController] - find - error - ${JSON.stringify(error)}`);
-                response_dto_1.default.httpErrorResponse(res, error);
-            }
-        });
-    }
-    delete(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield cart_action_1.default.delete(req.user_id, req.params.id);
-                api_logger_1.default.error(`[CartController] - delete - user_id - ${req.user_id} ${req.params.id}`);
-                response_dto_1.default.httpSuccessResponse(res, 200, response);
-            }
-            catch (error) {
-                api_logger_1.default.error(`[CartController] - delete - error - ${JSON.stringify(error)}`);
+                api_logger_1.default.error(`[OrderController] - find - error - ${JSON.stringify(error)}`);
                 response_dto_1.default.httpErrorResponse(res, error);
             }
         });
     }
 }
-exports.default = new CartController();
-//# sourceMappingURL=cart-controller.js.map
+exports.default = new OrderController();
+//# sourceMappingURL=order-controller.js.map

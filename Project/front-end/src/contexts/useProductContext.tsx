@@ -8,14 +8,15 @@ export interface ProductInterface {
   _id?: string;
   name?: string;
   price: number;
+  discount?: number;
   description: string;
   category: string;
   images: string[];
   color: string[];
   length: string[];
   density: string[];
-  createdAt?: string;
-  updatedAt?: string
+  created_at?: string;
+  updated_at?: string
 }
 
 type ProductType = ProductInterface[];
@@ -26,6 +27,12 @@ interface ProductContextValue {
   product: ProductInterface | null;
   getProduct: (id: string) => Promise<void>;
   getProducts: () => Promise<void>;
+  // 
+  modalCreate: boolean;
+  setModalCreate: React.Dispatch<React.SetStateAction<boolean>>;
+  // 
+  modalUpdate: boolean;
+  setModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ProductContext = createContext<ProductContextValue>({} as ProductContextValue);
@@ -34,6 +41,10 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState<ProductInterface | null>(null);
+  const [modalCreate, setModalCreate] = useState<boolean>(false);
+  const [modalUpdate, setModalUpdate] = useState<boolean>(false);
+
+
   const { errorToast } = useToast();
 
 
@@ -62,7 +73,17 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ProductContext.Provider value={{ getProducts, products, product, getProduct, loading }}>
+    <ProductContext.Provider value={{
+      getProducts,
+      products,
+      product,
+      getProduct,
+      loading,
+      modalCreate,
+      setModalCreate,
+      modalUpdate,
+      setModalUpdate,
+    }}>
       {children}
     </ProductContext.Provider>
   );

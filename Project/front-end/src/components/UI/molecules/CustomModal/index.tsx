@@ -57,7 +57,7 @@ export const CustomModal: React.FC<CustomModalProps> = ({
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: 350,
+                        width: 800,
                         backgroundColor: '#f5f5f5',
                         borderRadius: '5px',
                         textAlign: 'center',
