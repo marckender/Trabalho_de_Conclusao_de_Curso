@@ -4,7 +4,6 @@ import { PageDefault } from "../PageDefault";
 import { TableCell, TableRow, styled, tableCellClasses } from "@mui/material";
 import { MdEditNote } from "react-icons/md";
 import { useOrderContext } from "../../../../contexts/useOrdersContext";
-import { IoMdAddCircleOutline } from "react-icons/io";
 import PagesHeader from "../../../UI/molecules/PagesHeader";
 import { CustomModal } from "../../../UI/molecules/CustomModal";
 import "./styles.scss"
