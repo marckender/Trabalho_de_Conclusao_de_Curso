@@ -66,7 +66,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 
     const getOrder = async (id: string) => {
         try {
-            const response = await afroHomeApi.get(`orders/${id}`)
+            const response = await afroHomeApi.get(`/orders/${id}`)
             setOrder(response.data)
         } catch (error) {
             console.log(error)

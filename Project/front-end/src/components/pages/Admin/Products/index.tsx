@@ -9,6 +9,9 @@ import PagesHeader from "../../../UI/molecules/PagesHeader";
 import { CustomModal } from "../../../UI/molecules/CustomModal";
 import "./styles.scss"
 import BaseInput from "../../../UI/atoms/BaseInput";
+import { TbEdit } from "react-icons/tb";
+import BaseSelect from "../../../UI/atoms/BaseSelect";
+import { useCategoryContext } from "../../../../contexts/useCategoryContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,7 +41,9 @@ export default function ProductsAdminPage() {
   const [name, setName] = useState<string>("")
   const [price, setPrice] = useState<string>("")
   const [discount, setDiscount] = useState<string>("")
-  const [category, setCategory] = useState<string>("")
+  const [, setCategory] = useState<string>("")
+  const [availableAmount, setAvailableAmount] = useState<string>("")
+  const {categories, getCategories} = useCategoryContext()
 
   const {products,
     getProducts,
@@ -60,7 +65,19 @@ export default function ProductsAdminPage() {
 
   useEffect(() => {
     getProducts()
+    getCategories()
   }, [])
+
+  const handleSelectCategory = (e:any)=> {
+    setCategory(e.value)
+  }
+
+  const arrayCategory = categories.map(category => {
+    return {
+      name: category.name,
+      value: category._id
+    }
+  })
   
 
   return (
@@ -76,49 +93,51 @@ export default function ProductsAdminPage() {
             }}
           >
             <div>
-            <div className="product_form_container">
-              <div>
-                <BaseInput
-                  label="Name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e)}
-                  placeholder="EX: lace wigs"
-                />
+              <div className="product_form_container">
+                <div>
                   <BaseInput
-                  label="Price"
-                  type="text"
-                  value={price}
-                  onChange={(e) => setPrice(e)}
-                  placeholder="EX: lace wigs"
-                />
+                    label="Name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e)}
+                    placeholder="EX: lace wigs"
+                  />
                     <BaseInput
-                  label="Discount"
-                  type="text"
-                  value={discount}
-                  onChange={(e) => setDiscount(e)}
-                  placeholder="EX: lace wigs"
-                />
+                    label="Price"
+                    type="text"
+                    value={price}
+                    onChange={(e) => setPrice(e)}
+                    placeholder="EX: 0.00"
+                  />
+                      <BaseInput
+                    label="Discount"
+                    type="text"
+                    value={discount}
+                    onChange={(e) => setDiscount(e)}
+                    placeholder="EX: 0.00"
+                  />
 
+                </div>
+                <div>
+                <BaseInput
+                    label="Available Amount"
+                    type="text"
+                    value={availableAmount}
+                    onChange={(e) => setAvailableAmount(e)}
+                    placeholder="Ex: 135"
+                  />
+                  <BaseSelect options={arrayCategory} onSelect={handleSelectCategory} title='Category'/>
+                </div>
               </div>
               <div>
+                {/* description */}
+                description <br />
 
-              <BaseInput
-                  label="Category"
-                  type="text"
-                  value={category}
-                  onChange={(e) => setCategory(e)}
-                  placeholder="EX: lace wigs"
-                  />
+                      {/* Images */}
+                      images
+                  
+
               </div>
-              <br />
-            </div>
-            {/* description */}
-            description <br />
-
-                  {/* Images */}
-                  images
-               
 
             </div>
       </CustomModal>
@@ -163,7 +182,13 @@ export default function ProductsAdminPage() {
                   {row.updated_at}
               </StyledTableCell>
               <StyledTableCell align="left">
-                <MdDeleteSweep color="red"/>
+                <div style={{
+                  display: 'flex',
+                  gap: '0 8px'
+                }}>
+                  <MdDeleteSweep color="red"/>
+                  <TbEdit color="blue" />
+                </div>
               </StyledTableCell>
 
               
