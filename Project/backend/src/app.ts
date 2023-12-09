@@ -15,6 +15,7 @@ import productRoutes from "./routes/product-routes";
 import path = require("path");
 import cartRoutes from "./routes/cart-routes";
 import categoryRoutes from "./routes/category-routes";
+import orderRoutes from "./routes/oder-routes";
 
 class AfroHome {
     public app: express.Application;
@@ -41,6 +42,7 @@ class AfroHome {
         this.app.use("/", productRoutes);
         this.app.use("/", cartRoutes);
         this.app.use("/", categoryRoutes);
+        this.app.use("/", orderRoutes);
     }
 
     listen(port: string) {

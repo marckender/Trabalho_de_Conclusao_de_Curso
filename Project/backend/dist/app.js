@@ -14,6 +14,7 @@ const auth_routes_1 = require("./routes/auth-routes");
 const product_routes_1 = require("./routes/product-routes");
 const cart_routes_1 = require("./routes/cart-routes");
 const category_routes_1 = require("./routes/category-routes");
+const oder_routes_1 = require("./routes/oder-routes");
 class AfroHome {
     constructor() {
         this.app = express();
@@ -32,6 +33,7 @@ class AfroHome {
         this.app.use("/", product_routes_1.default);
         this.app.use("/", cart_routes_1.default);
         this.app.use("/", category_routes_1.default);
+        this.app.use("/", oder_routes_1.default);
     }
     listen(port) {
         this.app.listen(port, () => {

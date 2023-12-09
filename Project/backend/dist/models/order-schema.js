@@ -5,10 +5,10 @@ const uuid_1 = require("uuid");
 const Order_enum_1 = require("../enums/Order-enum");
 const OrderSchema = new mongoose.Schema({
     _id: { required: true, type: String, default: () => (0, uuid_1.v4)() },
-    order_number: { required: true, type: Number, unique: true },
+    order_number: { required: true, type: String, default: () => (0, uuid_1.v4)() },
     products: [
         {
-            productId: { type: String, required: true },
+            product_id: { type: String, required: true },
             qty: { type: Number, required: true, default: 1 },
             density: { type: Number },
             color: { type: String },
@@ -18,12 +18,13 @@ const OrderSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    address: { type: String, required: true },
     total_cost: {
         type: Number,
         required: true,
         default: 0
     },
-    Status: { type: String, required: true, default: Order_enum_1.OrderStatus.PENDENTE },
+    status: { type: String, required: true, default: Order_enum_1.OrderStatus.CONFIRMED },
     created_at: { type: Date, default: new Date() },
     updated_at: { type: Date, default: new Date() },
 }, {
