@@ -7,7 +7,6 @@ import { useOrderContext } from "../../../../contexts/useOrdersContext";
 import PagesHeader from "../../../UI/molecules/PagesHeader";
 import { CustomModal } from "../../../UI/molecules/CustomModal";
 import "./styles.scss"
-import BaseInput from "../../../UI/atoms/BaseInput";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -65,37 +64,7 @@ export default function OrdersAdminPage() {
                 <div>
                     <div className="product_form_container">
                         <div>
-                            <BaseInput
-                                label="Name"
-                                type="text"
-                                onChange={(e) => ""}
-                                placeholder="EX: lace wigs"
-                            />
-                            <BaseInput
-                                label="Price"
-                                type="text"
-                                value=""
-                                onChange={(e) => ""}
-                                placeholder="EX: lace wigs"
-                            />
-                            <BaseInput
-                                label="Discount"
-                                type="text"
-                                value=""
-                                onChange={(e) => ""}
-                                placeholder="EX: lace wigs"
-                            />
-
-                        </div>
-                        <div>
-
-                            <BaseInput
-                                label="Category"
-                                type="text"
-                                value=""
-                                onChange={(e) => ""}
-                                placeholder="EX: lace wigs"
-                            />
+                         
                         </div>
                         <br />
                     </div>
