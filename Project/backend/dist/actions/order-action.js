@@ -15,6 +15,7 @@ const api_error_1 = require("../utils/api-error");
 const uuid_1 = require("uuid");
 const user_action_1 = require("./user-action");
 const user_enum_1 = require("../enums/user-enum");
+const stripe_services_1 = require("../services/stripe-services");
 class OrderAction {
     find(_id) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,16 +35,27 @@ class OrderAction {
                 if (!orderInfos.address) {
                     throw new api_error_1.default("Address is required", 400);
                 }
+                if (!orderInfos.payment_data) {
+                    throw new api_error_1.default("payment_data are required", 400);
+                }
                 let cart = yield cart_repository_1.default.findOne({ user_id });
                 if (!cart || !cart.products.length) {
                     throw new api_error_1.default("cart not found", 500);
                 }
-                const order = Object.assign(Object.assign({}, cart.toObject()), { _id: (0, uuid_1.v4)(), address: req.body.address });
-                console.log("______", order);
-                const res = yield order_repository_1.default.create(order);
-                console.log('***', res);
-                if (res) {
-                    yield cart_repository_1.default.findByIdAndDelete(cart.id);
+                const paymentData = Object.assign(Object.assign({}, orderInfos.payment_data), { amount: cart.total_cost, userId: user_id });
+                const { status, payment_intent } = yield stripe_services_1.default.pay(paymentData);
+                if (status === 'CONFIRMED') {
+                    const order = Object.assign(Object.assign({}, cart.toObject()), { _id: (0, uuid_1.v4)(), address: req.body.address });
+                    const res = yield order_repository_1.default.create(order);
+                    if (res) {
+                        yield cart_repository_1.default.findByIdAndDelete(cart.id);
+                    }
+                    else {
+                        const retrievedPaymentIntent = yield stripe_services_1.default.retrievePaymentIntent(payment_intent);
+                        if (retrievedPaymentIntent.status === "succeeded") {
+                            yield stripe_services_1.default.refund(retrievedPaymentIntent.latest_charge);
+                        }
+                    }
                 }
             }
             catch (error) {
