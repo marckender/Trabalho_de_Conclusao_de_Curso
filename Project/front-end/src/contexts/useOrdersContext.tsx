@@ -4,18 +4,25 @@ import { useToast } from "./useToast";
 
 
 
-export interface OrdersInterface {
-    _id?: string;
-    name?: string;
-    price: number;
-    description: string;
-    category: string;
-    images: string[];
-    color: string[];
-    length: string[];
-    density: string[];
-    createdAt?: string;
-    updatedAt?: string
+
+
+interface Product {
+    product_id: string;
+    qty: number;
+    density?: number;
+    color?: string;
+}
+
+interface OrdersInterface {
+    _id: string;
+    order_number: string;
+    products: Product[];
+    user_id: string;
+    address: string;
+    total_cost: number;
+    status: string;
+    created_at: Date;
+    updated_at: Date;
 }
 
 type OrderType = OrdersInterface[];
@@ -26,6 +33,11 @@ interface OrderContextValue {
     order: OrdersInterface | null;
     getOrder: (id: string) => Promise<void>;
     getOrders: () => Promise<void>;
+    modalCreate: boolean;
+    setModalCreate: React.Dispatch<React.SetStateAction<boolean>>;
+    // 
+    modalUpdate: boolean;
+    setModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const OrderContext = createContext<OrderContextValue>({} as OrderContextValue);
@@ -35,6 +47,8 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState<OrdersInterface | null>(null);
     const { errorToast } = useToast();
+    const [modalCreate, setModalCreate] = useState<boolean>(false);
+    const [modalUpdate, setModalUpdate] = useState<boolean>(false);
 
 
     const getOrders = async () => {
@@ -42,7 +56,6 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
         try {
             const response = await afroHomeApi.get("/orders");
             setOrders(response.data)
-
         } catch (error: any) {
             const message: string = error.response.data.error;
             errorToast(message)
@@ -61,7 +74,12 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <OrderContext.Provider value={{ getOrders, orders, order, getOrder, loading }}>
+        <OrderContext.Provider value={{
+            getOrders, orders, order, getOrder, loading, modalCreate,
+            setModalCreate,
+            modalUpdate,
+            setModalUpdate,
+        }}>
             {children}
         </OrderContext.Provider>
     );
