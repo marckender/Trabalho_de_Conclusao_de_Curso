@@ -5,6 +5,8 @@ const auth_middleware_1 = require("../middlewares/auth-middleware");
 const cart_controller_1 = require("../controllers/cart-controller");
 const cartRoutes = express.Router();
 cartRoutes
-    .post("/api/carts", auth_middleware_1.default.isAuth, cart_controller_1.default.create);
+    .post("/api/carts", auth_middleware_1.default.isAuth, cart_controller_1.default.create)
+    .get("/api/carts", auth_middleware_1.default.isAuth, cart_controller_1.default.find)
+    .delete("/api/carts/:id", auth_middleware_1.default.isAuth, cart_controller_1.default.delete);
 exports.default = cartRoutes;
 //# sourceMappingURL=cart-routes.js.map

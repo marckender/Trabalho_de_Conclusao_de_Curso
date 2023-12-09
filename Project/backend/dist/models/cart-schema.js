@@ -10,6 +10,7 @@ const CartSchema = new mongoose.Schema({
             qty: { type: Number, required: true, default: 1 },
             density: { type: Number },
             color: { type: String },
+            price: { type: Number, required: true },
         }
     ],
     user_id: {

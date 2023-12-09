@@ -26,6 +26,32 @@ class CartController {
             }
         });
     }
+    find(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield cart_action_1.default.find(req.user_id);
+                api_logger_1.default.error(`[CartController] - find - user_id - ${req.user_id}`);
+                response_dto_1.default.httpSuccessResponse(res, 200, response);
+            }
+            catch (error) {
+                api_logger_1.default.error(`[CartController] - find - error - ${JSON.stringify(error)}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const response = yield cart_action_1.default.delete(req.user_id, req.params.id);
+                api_logger_1.default.error(`[CartController] - delete - user_id - ${req.user_id} ${req.params.id}`);
+                response_dto_1.default.httpSuccessResponse(res, 200, response);
+            }
+            catch (error) {
+                api_logger_1.default.error(`[CartController] - delete - error - ${JSON.stringify(error)}`);
+                response_dto_1.default.httpErrorResponse(res, error);
+            }
+        });
+    }
 }
 exports.default = new CartController();
 //# sourceMappingURL=cart-controller.js.map
