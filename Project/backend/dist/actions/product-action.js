@@ -28,7 +28,7 @@ class ProductAction {
             const images = req.files;
             const searchCategory = yield category_actions_1.default.findById(category_id);
             if (!searchCategory) {
-                throw new api_error_1.default("you need to fill an correct categoryId", 500);
+                throw new api_error_1.default("you need to fill an correct category_id", 500);
             }
             const product = Object.assign(Object.assign({}, req.body), { category: category_id, images: images === null || images === void 0 ? void 0 : images.map((image) => (image.firebaseUrl)) });
             if (!name || !category_id || !description || !price || !images.length) {

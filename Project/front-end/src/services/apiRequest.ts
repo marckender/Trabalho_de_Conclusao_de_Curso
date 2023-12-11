@@ -26,6 +26,7 @@ const handleResponse = (response: any) => {
 
 export const afroHomeApi = axios.create({
     baseURL: 'https://trabalho-de-conclusao-de-curso.vercel.app/api'
+
 });
 
 afroHomeApi.interceptors.response.use(handleResponse, handleError);

@@ -12,6 +12,9 @@ import BaseInput from "../../../UI/atoms/BaseInput";
 import { TbEdit } from "react-icons/tb";
 import BaseSelect from "../../../UI/atoms/BaseSelect";
 import { useCategoryContext } from "../../../../contexts/useCategoryContext";
+import InputTextarea from "../../../UI/atoms/InputTextArea";
+import InputImageUpload from "../../../UI/molecules/InputImageUpload";
+import BaseMultipleSelect from "../../../UI/atoms/BaseMultipleSelect";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,9 +44,16 @@ export default function ProductsAdminPage() {
   const [name, setName] = useState<string>("")
   const [price, setPrice] = useState<string>("")
   const [discount, setDiscount] = useState<string>("")
-  const [, setCategory] = useState<string>("")
+  const [category, setCategory] = useState<string>("")
+  const [ description, setDescription ] = useState<string>("")
   const [availableAmount, setAvailableAmount] = useState<string>("")
+  const [colors, setColors] = useState([])
+  const [densities, setDensities] = useState([])
   const { categories, getCategories } = useCategoryContext()
+
+  const [firstImg, setFirstImg] = useState({ preview: "", raw: "" });
+  const [secondImg, setSecondImg] = useState({ preview: "", raw: "" });
+  const [thirdImg, setThirdImg] = useState({ preview: "", raw: "" });
 
   const { products,
     getProducts,
@@ -51,6 +61,7 @@ export default function ProductsAdminPage() {
     modalCreate,
     setModalCreate,
     removeProduct,
+    createProduct
   } = useProductContext()
 
   const headers = ['ID',
@@ -72,12 +83,86 @@ export default function ProductsAdminPage() {
     setCategory(e.value)
   }
 
-  const arrayCategory = categories.map(category => {
-    return {
-      name: category.name,
-      value: category._id
+  
+  const handleFirstImg =async (e:any)=> {
+    if (e.target.files.length) {
+        setFirstImg({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        });
+          
     }
-  })
+}
+const handleSecondImg =(e:any)=> {
+    if (e.target.files.length) {
+        setSecondImg({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        });
+    }
+}
+const handleThirdImg =(e:any)=> {
+    if (e.target.files.length) {
+        setThirdImg({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        });
+    }
+}
+
+const arrayCategory = categories.map(category => {
+  return {
+    name: category.name,
+    value: category._id
+  }
+})
+
+const arrayColor = [
+  {name: 'gray', value: 'gray'},
+  {name: 'black', value: 'black'},
+  {name: 'red', value: 'red'},
+  {name: 'green', value: 'green'},
+  {name: 'yellow', value: 'yellow'},
+]
+
+const arrayDensity = [
+  {name: '100 Inch', value: '100 Inch'},
+  {name: '200 Inch', value: '200 Inch'},
+  {name: '300 Inch', value: '300 Inch'},
+  {name: '400 Inch', value: '400 Inch'},
+  
+]
+
+const handleSelectColor = (options: any) => {
+  setColors(options)
+}
+
+const handleSelectDensity = (options: any) => {
+  setDensities(options)
+}
+
+const handleSubmitProductCreation =()=> {
+  console.log(category)
+  const files = [
+      firstImg.raw,
+      secondImg.raw,
+      thirdImg.raw,
+  ]
+  const data = {
+    name,
+    description,
+    category_id: category,
+    price: Number(price),
+    discount:Number(discount),
+    availableAmount: Number(availableAmount),
+    colors: colors.map((color:{name: string, value: string}) => color.value),
+    density: densities.map((density:{name: string, value: string}) => density.value),
+    files
+  }
+
+  createProduct(data);
+}
+
 
 
   return (
@@ -89,10 +174,9 @@ export default function ProductsAdminPage() {
         open={modalCreate}
         setOpen={setModalCreate}
         onClickBtnConfirm={(): void => {
-          // handleConfirmCategoryCreation();
+          handleSubmitProductCreation()
         }}
       >
-        <div>
           <div className="product_form_container">
             <div>
               <BaseInput
@@ -107,15 +191,10 @@ export default function ProductsAdminPage() {
                 type="text"
                 value={price}
                 onChange={(e) => setPrice(e)}
-                placeholder="EX: 0.00"
+                placeholder="0.00"
               />
-              <BaseInput
-                label="Discount"
-                type="text"
-                value={discount}
-                onChange={(e) => setDiscount(e)}
-                placeholder="EX: 0.00"
-              />
+              <BaseInput label="Discount" type="text" value={discount} onChange={(e) => setDiscount(e)} placeholder="0.00" />
+              <InputTextarea label="Description" onInput={(e)=> setDescription(e)} value={description}/>
 
             </div>
             <div>
@@ -126,20 +205,18 @@ export default function ProductsAdminPage() {
                 onChange={(e) => setAvailableAmount(e)}
                 placeholder="Ex: 135"
               />
-              <BaseSelect options={arrayCategory} onSelect={handleSelectCategory} title='Category' />
+              <BaseSelect title='Category' options={arrayCategory} onSelect={handleSelectCategory} />
+              <BaseMultipleSelect title='Color' options={arrayColor} onSelect={handleSelectColor} />
+              <BaseMultipleSelect title='Density' options={arrayDensity} onSelect={handleSelectDensity} />
             </div>
           </div>
-          <div>
-            {/* description */}
-            description <br />
+          <div className="product_form_container__images">
 
-            {/* Images */}
-            images
-
+          <InputImageUpload label="img1" id="img1"   onChange={handleFirstImg} preview={firstImg.preview}/>
+          <InputImageUpload label="img2" id="img2" onChange={handleSecondImg} preview={secondImg.preview}/>
+          <InputImageUpload label="img3" id="img3" onChange={handleThirdImg} preview={thirdImg.preview}/>
 
           </div>
-
-        </div>
       </CustomModal>
 
       <PagesHeader

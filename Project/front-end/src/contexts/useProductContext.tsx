@@ -1,6 +1,8 @@
 import { createContext, useContext, useState } from "react";
 import { afroHomeApi } from "../services/apiRequest";
 import { useToast } from "./useToast";
+import { useAuthContext } from "./useAuthContext";
+import axios from "axios";
 
 
 
@@ -32,19 +34,22 @@ interface ProductContextValue {
   setModalCreate: React.Dispatch<React.SetStateAction<boolean>>;
   modalUpdate: boolean;
   setModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
+  createProduct: (data:any)=> Promise<void>;
 }
 
 const ProductContext = createContext<ProductContextValue>({} as ProductContextValue);
 
 export function ProductProvider({ children }: { children: React.ReactNode }) {
+
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState<ProductInterface | null>(null);
   const [modalCreate, setModalCreate] = useState<boolean>(false);
   const [modalUpdate, setModalUpdate] = useState<boolean>(false);
+  const { token } = useAuthContext()
 
 
-  const { errorToast } = useToast();
+  const { successToast, errorToast } = useToast();
 
 
   const getProducts = async () => {
@@ -82,6 +87,55 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+  const createProduct = async(data: any) => {
+    setLoading(true)
+    const {
+      files,
+      name,
+    description,
+    category_id,
+    price,
+    discount,
+    availableAmount,
+    colors,
+    density,
+    } = data
+
+
+    const formData = new FormData();
+    formData.append('name', name)
+    formData.append('description', description)
+    formData.append('category_id', category_id)
+    formData.append('price', price)
+    formData.append('discount', discount)
+    formData.append('availableAmount', availableAmount)
+    formData.append('colors', colors)
+    formData.append('density', density)
+    formData.append('images',files[0])
+    formData.append('images',files[1])
+    formData.append('images',files[2])
+
+    try {
+      const response: any = await axios({
+        method: 'POST',
+        url: "https://trabalho-de-conclusao-de-curso.vercel.app/api/products",
+        data: formData,
+        headers: {
+          'processData': false,
+          'Content-Type':false,
+          'Authorization':`Bearer ${token}` 
+        }
+      })
+    successToast(response.data.message)
+    setModalCreate(false)
+    } catch (error:any) {
+      const message: string = error.response
+      errorToast(message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <ProductContext.Provider value={{
       getProducts,
@@ -93,7 +147,8 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
       setModalCreate,
       modalUpdate,
       setModalUpdate,
-      removeProduct
+      removeProduct,
+      createProduct
     }}>
       {children}
     </ProductContext.Provider>

@@ -2,4 +2,12 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    gap: 0 50px;
+}
+
+.product_form_container__images {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0 16px;  
 }

@@ -1,12 +1,9 @@
-import * as express from "express"
-
 import ApiError from "../utils/api-error";
 import ProductRepository from "../repositories/product-repository";
-import { Request } from 'express';
-import categoryActions from "./category-actions";
+import CategoryActions from "./category-actions";
 
 class ProductAction {
-  async find(req: Request) {
+  async find(req: any) {
     const product = await ProductRepository.findById(req.params.id);
     if(!product) {
         throw new ApiError(
@@ -25,11 +22,11 @@ class ProductAction {
 
     const images = req.files;
 
-    const searchCategory = await categoryActions.findById(category_id)
+    const searchCategory = await CategoryActions.findById(category_id)
 
     if(!searchCategory) {
         throw new ApiError(
-            "you need to fill an correct categoryId",
+            "you need to fill an correct category_id",
             500
         );
     }
@@ -49,7 +46,7 @@ class ProductAction {
         }
     }
 
-    async findAll(req: Request) {
+    async findAll(req: any) {
         const products = await ProductRepository.find();
         return products.map((product) =>({
             ...product.toObject()

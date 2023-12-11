@@ -45,7 +45,7 @@ const BaseSelect: React.FC<SelectProps> = ({
       </p>
       <div className="select-header" onClick={toggleSelect}>
         <span className="selected-option">
-          {selectedOption ? selectedOption.name : "Choisir une option"}
+          {selectedOption ? selectedOption.name : "Choose an option"}
         </span>
         <BiChevronDown
           className={`toggle-icon ${isOpen ? "rotated" : ""}`}
