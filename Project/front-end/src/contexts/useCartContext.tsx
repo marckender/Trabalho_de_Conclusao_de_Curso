@@ -3,25 +3,6 @@ import { afroHomeApi } from '../services/apiRequest';
 import { useToast } from './useToast';
 import { useNavigate } from 'react-router-dom';
 
-interface IProduct {
-    product_id: string;
-    qty: number;
-    density?: number;
-    color?: string;
-    price: number;
-}
-
-
-interface CartInterface {
-    _id: string;
-    products: IProduct[];
-    user_id: string;
-    total_cost: number;
-    created_at: Date;
-    updated_at: Date;
-}
-
-type CartType = CartInterface[];
 
 interface CartContextValue {
     loading: boolean;
@@ -41,7 +22,7 @@ const CartContext = createContext<CartContextValue>({} as CartContextValue);
 export function CartProvider({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState<boolean>(false);
     const [cart, setCart] = useState([]);
-    const { errorToast, successToast, warningToast } = useToast();
+    const { errorToast, successToast } = useToast();
 
     const navigate = useNavigate();
     const getCart = async () => {
