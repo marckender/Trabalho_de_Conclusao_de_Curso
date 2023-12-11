@@ -14,19 +14,19 @@ function App() {
   return (
     <BrowserRouter>
       <ToastProvider>
+        <AuthProvider>
         <OrderProvider>
           <CartProvider>
             <UserProvider>
               <CategoryProvider>
-                  <AuthProvider>
                 <ProductProvider>
                     <PrincipalRoutes />
                 </ProductProvider>
-                  </AuthProvider>
               </CategoryProvider>
             </UserProvider>
           </CartProvider>
         </OrderProvider>
+          </AuthProvider>
       </ToastProvider>
     </BrowserRouter>
   )
