@@ -20,7 +20,7 @@ import { useCartContext } from "../../../../contexts/useCartContext"
 
 
 export default function Navbar() {
-  const {user, logout} = useAuthContext();
+  const {user, token, logout} = useAuthContext();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const {cart,getCart } = useCartContext();
 
