@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import "./styles.scss";
 
@@ -23,6 +23,26 @@ const BaseSelect: React.FC<SelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(defaultValue || null);
 
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   useEffect(() => {
     // Update selected option when defaultValue changes
     setSelectedOption(defaultValue || null);
@@ -39,7 +59,7 @@ const BaseSelect: React.FC<SelectProps> = ({
   };
 
   return (
-    <div className={`select ${isOpen ? "open" : ""}`}>
+    <div ref={selectRef} className={`select ${isOpen ? "open" : ""}`}>
       <p>
         {title} <span>*</span>
       </p>

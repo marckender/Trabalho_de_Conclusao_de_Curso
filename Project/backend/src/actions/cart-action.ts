@@ -14,7 +14,7 @@ class CartAction {
             const user_id:string = req.user_id
             if (!product.product_id || !product.qty || !product.density || !product.color) {
               throw new ApiError(
-                "Product ID, name, quantity, and price are required for each product",
+                "product_id, qty, density, color are required",
                 500
               );
             }

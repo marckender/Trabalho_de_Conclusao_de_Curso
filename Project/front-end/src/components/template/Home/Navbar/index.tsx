@@ -16,11 +16,15 @@ import { useAuthContext } from "../../../../contexts/useAuthContext"
 import Dropdown from "../../../UI/atoms/Dropdown"
 import { RxDashboard } from "react-icons/rx";
 import { UserRoleEnum } from "../../../../utils/user-enum"
+import { useCartContext } from "../../../../contexts/useCartContext"
 
 
 export default function Navbar() {
   const {user, logout} = useAuthContext();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const {cart,getCart } = useCartContext();
+
+    console.log(cart.product)
 
     const handleToggleDrawer = () => {
       setIsDrawerOpen(!isDrawerOpen);
@@ -53,13 +57,21 @@ export default function Navbar() {
         };
       }, [isDrawerOpen]);
 
+      useEffect(() => {
+       getCart()
+      }, [])
+      
+
   return (
     <header className="header">
          <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
             <div className="nav_menu">
                 <ul className="nav_list">
                     <Link to="/login"><HiUserCircle /> Login</Link>
-                    <Link to="/carts"><BsCart3/> <span className="nav_cart_count"> 0</span></Link>
+                    <Link to="/carts">
+                        <BsCart3/> 
+                      <span className="nav_cart_count"> {cart[0]?.products?.length}</span>
+                      </Link>
                 </ul>
             </div>
         </Drawer>
@@ -147,7 +159,7 @@ export default function Navbar() {
                     </Link>
                     }
 
-                    <Link to="/carts"><PiShoppingCartThin/> <span className="nav_cart_count"></span></Link>
+                    <Link to="/carts"><PiShoppingCartThin/> <span className="nav_cart_count">{cart[0]?.products?.length}</span></Link>
                    
                 </ul>
             </div>

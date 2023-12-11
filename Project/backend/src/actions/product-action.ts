@@ -26,7 +26,7 @@ class ProductAction {
 
     if(!searchCategory) {
         throw new ApiError(
-            "you need to fill an correct category_id",
+            "you need to fill a correct category_id",
             500
         );
     }

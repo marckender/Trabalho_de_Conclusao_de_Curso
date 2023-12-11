@@ -9,17 +9,21 @@ import BaseButton from '../../UI/atoms/BaseButton';
 import { FaStoreAlt } from 'react-icons/fa';
 import { GiMoneyStack } from "react-icons/gi";
 import { TbTruckReturn } from "react-icons/tb";
+import { useCartContext } from '../../../contexts/useCartContext';
+import BaseSelect from '../../UI/atoms/BaseSelect';
+import { useToast } from '../../../contexts/useToast';
 
 export default function Details() {
     const { id } = useParams();
     const {product, getProduct} = useProductContext();
+    const {addTocart, loading} = useCartContext()
+
+    const [selectedColor, setSelectedColor] = useState("")
+    const [selectedDensity, setSelectedDensity] = useState("")
+
+    const {warningToast} = useToast()
 
     const [qty, setQty] = useState(1);
-
-    // const handleChangeQuantity = (qty: number) => {
-    //     setQty(Number(qty));
-    //   }
-    
       const handleIncrement = () =>{
         setQty(qty+1);
       }
@@ -34,6 +38,45 @@ export default function Details() {
         getProduct(String(id));
         window.scrollTo(0,0)
       }, [id])
+
+      
+      const densityValues = product?.density[0]?.split(',')
+      const arrayDensity = densityValues?.map(value => {
+          return { name: value.trim(), value: value.trim() };
+        });
+
+    const handleSelectedDensity = (e: {name: string, value: string}) => {
+        setSelectedDensity(e.value)
+    }
+    
+    const colorValues = product?.color[0]?.split(',')
+    const arrayColor = colorValues?.map(value => {
+        return { name: value.trim(), value: value.trim() };
+    });
+    
+    const handleSelectedColor = (e: {name: string, value: string}) => {
+        setSelectedColor(e.value)
+    }
+    
+    const handleSubmit = () => {
+
+        if( !selectedColor || !selectedDensity) {
+            return warningToast("Color or Density are required")
+        }
+        const data :  {product_id: string,
+        qty: number,
+        density: number,
+        color: string}
+        = {
+            product_id: product?._id ?? '',
+            qty,
+            density: Number(selectedDensity?.split(' ')[0]),
+            color: selectedColor
+        }
+       addTocart(data);
+
+    }
+    
     
   return (
     <PageDefault>
@@ -64,8 +107,23 @@ export default function Details() {
                                 decrement={handleDecrement}
                             />
                         </div>
-                    </div> <br />
-                    <BaseButton size='large' label='Add To Cart' background='#ff4747' width={100} onClick={()=>{""}}/>
+                    </div> 
+                    <div style={{
+                        display: "flex",
+                        gap: '0  16px',
+                        flexWrap: 'nowrap'
+                    }}>
+                        { arrayColor?.length &&
+                            <BaseSelect title='Color' options={arrayColor ?? []} onSelect={handleSelectedColor} />  
+                        }
+
+                        { arrayDensity?.length && 
+                            <BaseSelect title='Density' options={arrayDensity ?? []} onSelect={handleSelectedDensity} />
+                        }
+                    </div>
+                    <br />
+
+                    <BaseButton size='large' label='Add To Cart' background='#ff4747' width={100} onClick={handleSubmit} loading={loading}/>
 
                     <div><br />
                         <h3>Deliver Options</h3>

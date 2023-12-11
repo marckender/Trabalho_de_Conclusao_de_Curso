@@ -109,14 +109,14 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
     formData.append('price', price)
     formData.append('discount', discount)
     formData.append('availableAmount', availableAmount)
-    formData.append('colors', colors)
+    formData.append('color', colors)
     formData.append('density', density)
     formData.append('images',files[0])
     formData.append('images',files[1])
     formData.append('images',files[2])
 
     try {
-      const response: any = await axios({
+      await axios({
         method: 'POST',
         url: "https://trabalho-de-conclusao-de-curso.vercel.app/api/products",
         data: formData,
@@ -126,10 +126,12 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
           'Authorization':`Bearer ${token}` 
         }
       })
-    successToast(response.data.message)
+    successToast("Successfully created")
+    getProducts();
     setModalCreate(false)
     } catch (error:any) {
-      const message: string = error.response
+      const message: string = error.response.data.error
+      console.log(error)
       errorToast(message)
     } finally {
       setLoading(false)
