@@ -7,6 +7,7 @@ import { ProductProvider } from './contexts/useProductContext'
 import { UserProvider } from './contexts/useUserContext'
 import { CategoryProvider } from './contexts/useCategoryContext'
 import { OrderProvider } from './contexts/useOrdersContext'
+import { CartProvider } from './contexts/useCartContext'
 
 function App() {
 
@@ -14,16 +15,17 @@ function App() {
     <BrowserRouter>
       <ToastProvider>
         <OrderProvider>
-
-          <UserProvider>
-            <CategoryProvider>
-              <ProductProvider>
-                <AuthProvider>
-                  <PrincipalRoutes />
-                </AuthProvider>
-              </ProductProvider>
-            </CategoryProvider>
-          </UserProvider>
+          <CartProvider>
+            <UserProvider>
+              <CategoryProvider>
+                <ProductProvider>
+                  <AuthProvider>
+                    <PrincipalRoutes />
+                  </AuthProvider>
+                </ProductProvider>
+              </CategoryProvider>
+            </UserProvider>
+          </CartProvider>
         </OrderProvider>
       </ToastProvider>
     </BrowserRouter>

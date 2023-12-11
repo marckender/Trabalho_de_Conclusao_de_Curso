@@ -27,10 +27,9 @@ interface ProductContextValue {
   product: ProductInterface | null;
   getProduct: (id: string) => Promise<void>;
   getProducts: () => Promise<void>;
-  // 
+  removeProduct: (productId: string) => Promise<void>;
   modalCreate: boolean;
   setModalCreate: React.Dispatch<React.SetStateAction<boolean>>;
-  // 
   modalUpdate: boolean;
   setModalUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -63,6 +62,17 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
+
+  const removeProduct = async (productId: string) => {
+    try {
+      await afroHomeApi.delete(`/products/${productId}`);
+      getProducts();
+    } catch (error: any) {
+      const message: string = error.response?.data.error || "Error removing product.";
+      errorToast(message);
+    }
+  };
+
   const getProduct = async (id: string) => {
     try {
       const response = await afroHomeApi.get(`products/${id}`)
@@ -83,6 +93,7 @@ export function ProductProvider({ children }: { children: React.ReactNode }) {
       setModalCreate,
       modalUpdate,
       setModalUpdate,
+      removeProduct
     }}>
       {children}
     </ProductContext.Provider>
