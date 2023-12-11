@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { PageDefault } from '../PageDefault';
 import { useCartContext } from '../../../../contexts/useCartContext';
 
