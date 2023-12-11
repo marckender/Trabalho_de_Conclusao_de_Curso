@@ -24,8 +24,6 @@ export default function Navbar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const {cart,getCart } = useCartContext();
 
-    console.log(cart.product)
-
     const handleToggleDrawer = () => {
       setIsDrawerOpen(!isDrawerOpen);
     };
@@ -59,9 +57,8 @@ export default function Navbar() {
 
       useEffect(() => {
          if(user&& token) {
-          handleGetCart();
+           getCart()
         }
-       getCart()
       }, [])
       
 
