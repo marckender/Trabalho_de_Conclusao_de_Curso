@@ -58,6 +58,9 @@ export default function Navbar() {
       }, [isDrawerOpen]);
 
       useEffect(() => {
+         if(user&& token) {
+          handleGetCart();
+        }
        getCart()
       }, [])
       
