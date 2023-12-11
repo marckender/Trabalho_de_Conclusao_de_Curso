@@ -20,7 +20,7 @@ export default function Carts() {
         <div>
           <h3>Total Cost: {cart[0].total_cost}</h3>
           <ul>
-            {cart[0].products.map((product) => (
+            {cart[0].products.map((product: any) => (
               <li key={product.product_id}>
                 {product.qty} x {product.product_id} - {product.price * product.qty}
                 <button onClick={() => removeFromCart(product.product_id)}>Remove</button>
