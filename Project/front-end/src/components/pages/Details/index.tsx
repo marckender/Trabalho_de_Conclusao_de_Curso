@@ -100,7 +100,7 @@ export default function Details() {
 
                         <div className="detail_quantity">
                             <InputQuantity
-                                total={50}
+                                total={product?.availableAmount}
                                 label='Amount'
                                 value={qty}
                                 increment={handleIncrement}

@@ -40,13 +40,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 
     const removeFromCart = async (_id: string) => {
+       setLoading(true)
         try {
-            const response = await afroHomeApi.delete(`/carts/${_id}`);
-            setCart(response.data);
+            await afroHomeApi.delete(`/carts/${_id}`);
             getCart()
         } catch (error: any) {
             const message: string = error.response?.data.error || 'Error removing from cart.';
             errorToast(message);
+        } finally {
+            setLoading(false)
         }
     };
 

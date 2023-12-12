@@ -5,24 +5,18 @@ import { AiFillDelete } from "react-icons/ai";
 
 type Props = {
   item: any;
-  // removeFromCart?: (id: string) => void;
+  removeFromCart: (id: string) => void;
 };
 
-const CartItem = ({ item }: Props) => {
-    console.log(item)
+const CartItem = ({ item, removeFromCart }: Props) => {
   return (
     <div className="cart_container">
-      <div>
+        <img src={item.image} alt={item.name} />
         <h3>{item.name}</h3>
-        <div className="information">
-          <p>Price: ${item.price}</p>
-          <p>Total: ${(item.qty * item.price).toFixed(2)}</p>
-        </div>
-        <div className="buttons">
-        <AiFillDelete />
-        </div>
-      </div>
-      <img src={item.image} alt={item.name} />
+        <p>Price: ${item.price}</p>
+        <p>Quantity: {item.qty}</p>
+        <AiFillDelete style={{cursor: "pointer", fontSize:"20px"}} title="Delete" color="red" onClick={()=>removeFromCart(item.product_id)}/>
+        <p>Total: ${(item.qty * item.price).toFixed(2)}</p>
     </div>
   );
 };

@@ -1,5 +1,38 @@
-.cart_section {
+.cart_container {
     font-family: Arial, Helvetica, sans-serif;
-    width: 500px;
     padding: 20px;
+
+    // button {
+    //     align-self: flex-end;
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     text-align: right;
+    // }
+
+    .cart_button{
+        text-align: right;
+        margin-top: 8px;
+    }
 }
+
+@media only screen and (max-width: 900px) { 
+    .cart_container {
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 20px;
+    
+        // button {
+        //     align-self: flex-end;
+        //     display: flex;
+        //     justify-content: flex-end;
+        //     text-align: right;
+        // }
+    
+        .cart_button{
+            text-align: center;
+            button {
+                min-width: 100%;
+            }
+        }
+    }
+  }
+  

@@ -10,6 +10,7 @@ export interface ProductInterface {
   _id?: string;
   name?: string;
   price: number;
+  availableAmount: number;
   discount?: number;
   description: string;
   category: string;
