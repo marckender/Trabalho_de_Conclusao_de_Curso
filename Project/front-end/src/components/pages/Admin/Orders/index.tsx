@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function OrdersAdminPage() {
-    const { orders, getOrders, modalCreate, setModalCreate, loading } = useOrderContext();
+    const { orders, getOrders, modalCreate, setModalCreate, loadingOrder } = useOrderContext();
 
     const headers = [
         'Order Number',
@@ -53,7 +53,7 @@ export default function OrdersAdminPage() {
         <PageDefault>
 
             <CustomModal
-                loading={loading}
+                loading={loadingOrder}
                 title="Edit Order"
                 open={modalCreate}
                 setOpen={setModalCreate}
@@ -81,7 +81,7 @@ export default function OrdersAdminPage() {
             />
 
 
-            <CustomTable headers={headers} itemsPerPage={36} totalItems={15} handlePageChange={() => window.alert('Not Implemented')} loading={loading}>
+            <CustomTable headers={headers} itemsPerPage={36} totalItems={15} handlePageChange={() => window.alert('Not Implemented')} loading={loadingOrder}>
                 {orders?.map((order: any) => (
                     <StyledTableRow key={order._id}>
                         <StyledTableCell align="left">{order.order_number}</StyledTableCell>
