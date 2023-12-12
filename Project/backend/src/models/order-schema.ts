@@ -8,6 +8,8 @@ const OrderSchema = new mongoose.Schema(
     order_number: {required: true, type: String, default: () => uuidV4()},
     products: [
         {
+            name: {type: String},
+            image: {type: String},
             product_id: { type: String, required: true },
             qty: { type: Number, required: true,default: 1 },
             density:  {type: Number},

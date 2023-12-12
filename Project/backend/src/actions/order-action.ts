@@ -10,7 +10,6 @@ import stripeServices from "../services/stripe-services";
 class OrderAction {
   async find(_id: string) {
     const loggedUser = await userAction.findById(_id)
-    console.log(loggedUser)
     if (loggedUser.role === UserRole.ADMIN) {
       return await orderRepository.find()
     }

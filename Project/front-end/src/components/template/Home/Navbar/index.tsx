@@ -17,6 +17,7 @@ import Dropdown from "../../../UI/atoms/Dropdown"
 import { RxDashboard } from "react-icons/rx";
 import { UserRoleEnum } from "../../../../utils/user-enum"
 import { useCartContext } from "../../../../contexts/useCartContext"
+import { MdSell } from "react-icons/md"
 
 
 export default function Navbar() {
@@ -137,6 +138,20 @@ export default function Navbar() {
                             <hr />
                             </>
                           }
+
+                          {/* {user.role === UserRoleEnum.CLIENT && */}
+                            <>
+                              <span style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                              }}>
+                              <Link to="/orders">
+                              <MdSell />Orders</Link>
+                              </span>
+                            <hr />
+                            </>
+                          {/* } */}
 
                           
                           <span onClick={()=>logout()} style={{
