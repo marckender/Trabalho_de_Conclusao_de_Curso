@@ -104,7 +104,7 @@ class StripeService {
     const params: Stripe.CustomerCreateParams = {
       name: user.name,
       email: user.email,
-      //source: token,
+      source: token,
     };
     return await this.stripeInstance.customers.create(params);
   }
