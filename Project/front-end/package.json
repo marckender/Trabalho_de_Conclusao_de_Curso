@@ -18,6 +18,8 @@
     "axios": "^1.4.0",
     "lodash": "^4.17.21",
     "node-sass": "^9.0.0",
+    "@stripe/react-stripe-js": "^1.4.0",
+    "@stripe/stripe-js": "^1.13.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",

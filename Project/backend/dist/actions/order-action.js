@@ -20,7 +20,6 @@ class OrderAction {
     find(_id) {
         return __awaiter(this, void 0, void 0, function* () {
             const loggedUser = yield user_action_1.default.findById(_id);
-            console.log(loggedUser);
             if (loggedUser.role === user_enum_1.UserRole.ADMIN) {
                 return yield order_repository_1.default.find();
             }
