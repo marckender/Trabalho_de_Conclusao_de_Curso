@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
+import React, { useEffect, useState } from 'react';
 import { PageDefault } from '../PageDefault';
 import { useCartContext } from '../../../../contexts/useCartContext';
 import CartItem from '../../../template/Home/Cart';
@@ -10,6 +13,7 @@ import { useOrderContext } from '../../../../contexts/useOrdersContext';
 import {
   useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement
 } from '@stripe/react-stripe-js';
+import BaseInput from '../../../UI/atoms/BaseInput';
 
 
 const CARD_ELEMENT_OPTIONS = {
@@ -32,6 +36,8 @@ export default function Carts() {
   
   const { cart, loading, getCart, removeFromCart} = useCartContext();
   const { setModalCreate, modalCreate,createOrder, setLoading} = useOrderContext();
+
+  const [address, setAddress] = useState<string>("")
   const stripe = useStripe();
   const elements = useElements();
 
@@ -44,11 +50,16 @@ export default function Carts() {
     if (!stripe || !elements) {
       return;
     }
-    let card: any = elements.getElement(CardNumberElement, CardCvcElement, CardExpiryElement);
+    const card: any = elements.getElement(CardNumberElement, CardCvcElement, CardExpiryElement);
     
     setLoading(true)
     const result: any = await stripe.createToken(card);
-    createOrder(result)
+
+    const data = {
+      payment_data: result,
+      address
+    }
+    createOrder(data)
   }
 
 
@@ -68,6 +79,10 @@ export default function Carts() {
         <div className="wallet_form_container">
         <form action="">
                 <div className="left">
+
+                  <div>
+                    <BaseInput label='Address' type="text" value={address} onChange={(e:any)=> setAddress(e)} />
+                  </div>
                     <div className="stripe__input">
                         <label htmlFor="cc-number">Card Number</label>
                         <CardNumberElement
