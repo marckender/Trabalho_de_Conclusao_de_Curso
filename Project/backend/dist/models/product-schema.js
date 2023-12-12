@@ -11,10 +11,10 @@ const ProductSchema = new mongoose.Schema({
     discount: { type: Number, default: 0 },
     images: [{ type: String, required: true }],
     availableAmount: { type: Number, required: true },
-    color: [{ type: String }],
+    color: [{ type: String, required: true }],
     brand: { type: String },
     lenght: [{ type: String }],
-    density: [{ type: String }],
+    density: [{ type: String, required: true }],
     created_at: { type: Date, default: new Date() },
     updated_at: { type: Date, default: new Date() },
 }, {

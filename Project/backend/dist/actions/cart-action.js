@@ -24,7 +24,7 @@ class CartAction {
                 const product = req.body;
                 const user_id = req.user_id;
                 if (!product.product_id || !product.qty || !product.density || !product.color) {
-                    throw new api_error_1.default("Product ID, name, quantity, and price are required for each product", 500);
+                    throw new api_error_1.default("product_id, qty, density, color are required", 500);
                 }
                 const foundProduct = yield product_repository_1.default.findById(product.product_id);
                 if (!foundProduct) {
