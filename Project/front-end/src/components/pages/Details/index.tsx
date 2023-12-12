@@ -93,9 +93,9 @@ export default function Details() {
                         <div className="detail_price_section">
                             <h2><span style={{
                                 color: 'gray'
-                            }}>$ </span>{product?.price}
+                            }}>$</span>{product?.price}
                             </h2>
-                            <h4> $ 0.00</h4>
+                            <h4> $0.00</h4>
                         </div>
 
                         <div className="detail_quantity">

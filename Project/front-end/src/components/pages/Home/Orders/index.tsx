@@ -38,7 +38,8 @@ export default function Orders() {
             {orders.map((product: any) => (
               <OrderItem
                 key={product.order_number}
-                item={product.products}
+                items={product.products}
+                orders={orders}
               />
             ))}
             <div className='cart_button'>

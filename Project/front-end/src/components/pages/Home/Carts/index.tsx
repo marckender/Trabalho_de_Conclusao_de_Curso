@@ -35,7 +35,7 @@ const CARD_ELEMENT_OPTIONS = {
 export default function Carts() {
   
   const { cart, loading, getCart, removeFromCart} = useCartContext();
-  const { setModalCreate, modalCreate,createOrder, setLoading} = useOrderContext();
+  const { setModalCreate, modalCreate,createOrder, loadingOrder, setLoadingOrder} = useOrderContext();
 
   const [address, setAddress] = useState<string>("")
   const stripe = useStripe();
@@ -47,16 +47,16 @@ export default function Carts() {
 
 
   const handleSubmit = async()=> {
+    setLoadingOrder(true)
     if (!stripe || !elements) {
       return;
     }
     const card: any = elements.getElement(CardNumberElement, CardCvcElement, CardExpiryElement);
     
-    setLoading(true)
     const result: any = await stripe.createToken(card);
 
     const data = {
-      payment_data: result,
+      payment_data: result.token,
       address
     }
     createOrder(data)
@@ -68,7 +68,7 @@ export default function Carts() {
 
 
       <CustomModal
-        loading={loading}
+        loading={loadingOrder}
         title="Checkout"
         open={modalCreate}
         setOpen={setModalCreate}

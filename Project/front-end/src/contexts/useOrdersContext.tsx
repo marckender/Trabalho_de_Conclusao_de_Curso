@@ -29,8 +29,8 @@ interface OrdersInterface {
 type OrderType = OrdersInterface[];
 
 interface OrderContextValue {
-    loading: boolean;
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    loadingOrder: boolean;
+    setLoadingOrder: React.Dispatch<React.SetStateAction<boolean>>;
     orders: OrderType;
     order: OrdersInterface | null;
     getOrder: (id: string) => Promise<void>;
@@ -46,7 +46,7 @@ interface OrderContextValue {
 const OrderContext = createContext<OrderContextValue>({} as OrderContextValue);
 
 export function OrderProvider({ children }: { children: React.ReactNode }) {
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loadingOrder, setLoadingOrder] = useState<boolean>(false);
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState<OrdersInterface | null>(null);
     const { errorToast, successToast } = useToast();
@@ -56,7 +56,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
 
 
     const getOrders = async () => {
-        setLoading(true)
+        setLoadingOrder(true)
         try {
             const response = await afroHomeApi.get("/orders");
             setOrders(response.data)
@@ -64,7 +64,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
             const message: string = error.response.data.error;
             errorToast(message)
         } finally {
-            setLoading(false)
+            setLoadingOrder(false)
         }
     }
 
@@ -78,25 +78,28 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     }
 
     const createOrder = async(data: any) => {
+        setLoadingOrder(true)
         try {
             await afroHomeApi.post('/orders', data)
             successToast("Successfully")
+            setLoadingOrder(false)
             navigate('/orders');
+
         } catch (error: any) {
             const message: string = error.response.data.error;
             errorToast(message)
         } finally {
-            setLoading(false)
+            setLoadingOrder(false)
         }
     }
 
     return (
         <OrderContext.Provider value={{
-            getOrders, orders, order, getOrder, loading, modalCreate,
+            getOrders, orders, order, getOrder,loadingOrder , modalCreate,
             setModalCreate,
             modalUpdate,
             setModalUpdate,
-            setLoading,
+            setLoadingOrder,
             createOrder
         }}>
             {children}

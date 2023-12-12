@@ -4,20 +4,26 @@ import "./styles.scss"
 import { AiFillDelete } from "react-icons/ai";
 
 type Props = {
-  item: any;
+  items: any;
+  orders: any;
 };
 
-const OrderItem = ({ item }: Props) => {
+const OrderItem = ({ items, orders }: Props) => {
+  const totalCost = orders.reduce((total, item) => total + item.total_cost, 0);
   return (
-    <div className="cart_container">
-        <img src={item.image} alt={item.name} />
-        <h3>{item.name}</h3>
-        <p>Price: ${item.price}</p>
-        <p>Quantity: {item.qty}</p>
-        <AiFillDelete style={{cursor: "pointer", fontSize:"20px"}} title="Delete" color="red"/>
-        <p>Total: ${(item.qty * item.price).toFixed(2)}</p>
-    </div>
-  );
+    <>
+      {items?.map((item: any) => (
+        <div className="cart_container" key={item._id}>
+            <img src={item.image} alt={item.name} />
+            <h3>{item.name}</h3>
+            <p>Price: ${item.price}</p>
+            <p>Quantity: {item.qty}</p>
+            <AiFillDelete style={{cursor: "pointer", fontSize:"20px"}} title="Delete" color="red"/>
+            <p>Total: $ {totalCost.toFixed(2)}</p>
+        </div>
+      ))}
+    </>
+    );
 };
 
 export default OrderItem;
