@@ -7,7 +7,7 @@ import { useOrderContext } from '../../../../contexts/useOrdersContext';
 
 export default function Orders() {
   
-  const { orders, getOrders, loading} = useOrderContext();
+  const { orders, getOrders, loadingOrder} = useOrderContext();
 
   useEffect(() => {
     getOrders();
@@ -22,7 +22,7 @@ export default function Orders() {
   return (
     <PageDefault>
       <div className="cart_container">
-        {loading && !orders.length ? (
+        {loadingOrder && !orders.length ? (
           <div>
             <h1>Your cart <small>({orders.length > 0 ? orders.length : 0})</small></h1> <br />
             {[...Array(orders.length > 0 ? orders.length : 3)].map((_, index) => (
@@ -34,7 +34,7 @@ export default function Orders() {
           </div>
         ) : orders.length > 0 ? (
           <div>
-            <h1>Orders <small>({orders[0].products.length})</small></h1> <br />
+            <h1>Orders <small>({orders.length})</small></h1> <br />
             {orders.map((product: any) => (
               <OrderItem
                 key={product.order_number}

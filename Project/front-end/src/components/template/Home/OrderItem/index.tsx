@@ -9,7 +9,7 @@ type Props = {
 };
 
 const OrderItem = ({ items, orders }: Props) => {
-  const totalCost = orders.reduce((total, item) => total + item.total_cost, 0);
+  const totalCost = orders.reduce((total: number, item: any) => total + item.total_cost, 0);
   return (
     <>
       {items?.map((item: any) => (
