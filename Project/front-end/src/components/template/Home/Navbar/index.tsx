@@ -2,8 +2,6 @@
 import {AiOutlineLogout, AiOutlineMenu} from "react-icons/ai"
 import logo from "../../../../assets/logo.png"
 import { Link } from "react-router-dom"
-import {HiUserCircle} from "react-icons/hi"
-import {BsCart3} from "react-icons/bs"
 import InputSearch from "../../../UI/molecules/InputSearch"
 import Drawer from "../../../UI/molecules/Drawer"
 import { useEffect, useState } from "react"
@@ -33,6 +31,7 @@ export default function Navbar() {
         setIsDrawerOpen(false);
       };
     const handleSearch = (searchText: string) => {
+      console.log(searchText)
         // Call your search API or perform the search logic here
         // Update the search results state with the results
         // setSearchResults([searchText])
