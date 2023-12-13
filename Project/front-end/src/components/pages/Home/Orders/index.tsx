@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
 import { PageDefault } from '../PageDefault';
 import "./styles.scss"
@@ -14,19 +15,14 @@ export default function Orders() {
   }, []);
 
 
-  // const goToCheckout =() => {
-  //   alert("ModalCheckout")
-  // }
-
-
   return (
     <PageDefault>
       <div className="cart_container">
         {loadingOrder && !orders.length ? (
           <div>
-            <h1>Your cart <small>({orders.length > 0 ? orders.length : 0})</small></h1> <br />
+            <h1>Orders <small>({orders.length > 0 ? orders.length : 0})</small></h1> <br />
             {[...Array(orders.length > 0 ? orders.length : 3)].map((_, index) => (
-              <React.Fragment key={index}>
+              <React.Fragment key={"product-"+index}>
                 <Skeleton animation="wave" variant="rectangular" height={100} width="100%" style={{ marginBottom: 10 }} />
                 <Skeleton animation="wave" variant="text" width="70%" />
               </React.Fragment>
@@ -42,12 +38,9 @@ export default function Orders() {
                 orders={orders}
               />
             ))}
-            <div className='cart_button'>
-              {/* <BaseButton size='large' label={`Buy (total: $ ${product.total_cost})`} background='#ff4747' width={20} onClick={goToCheckout} loading={loading}/> */}
-            </div>
           </div>
         ) : (
-          <p>You do not yet have products in your cart.</p>
+          <p>You haven't purchased any products yet</p>
         )}
       </div>
     </PageDefault>

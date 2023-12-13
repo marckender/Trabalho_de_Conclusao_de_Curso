@@ -33,7 +33,6 @@ export default function Navbar() {
         setIsDrawerOpen(false);
       };
     const handleSearch = (searchText: string) => {
-        console.log(searchText)
         // Call your search API or perform the search logic here
         // Update the search results state with the results
         // setSearchResults([searchText])
@@ -68,12 +67,66 @@ export default function Navbar() {
          <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
             <div className="nav_menu">
                 <ul className="nav_list">
-                    <Link to="/login"><HiUserCircle /> Login</Link>
-                    <Link to="/carts">
-                        <BsCart3/> 
-                      <span className="nav_cart_count"> {cart[0]?.products?.length}</span>
-                      </Link>
-                </ul>
+                      { !!user ?
+                      <Dropdown contentWidth="100" renderContent={() => (
+                        <div style={{
+                          padding: '8px'
+                        }}>
+
+                          {user.role === UserRoleEnum.ADMIN &&
+                            <>
+                              <span style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                              }}>
+                              <Link to="/admin/dashboard">
+                              <RxDashboard />Go to Admin</Link>
+                              </span>
+                            <hr />
+                            </>
+                          }
+
+                          {user.role === UserRoleEnum.CLIENT &&
+                          <>
+                              <span style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px'
+                              }}>
+                              <Link to="/orders">
+                              <MdSell />Orders</Link>
+                              </span>
+                            <hr />
+                          </>
+                          }
+
+                          
+                          <span onClick={()=>logout()} style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px'
+                          }}><AiOutlineLogout/> Logout</span>
+                        </div>
+                      )}>
+                        <small>{user?.name}</small>
+                      </Dropdown>
+
+                      :
+                    <Link to="/login">
+                      <small style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                      }}>Login <FaRegUser /></small>
+                    </Link>
+                    }
+
+                    <Link to="/carts"><PiShoppingCartThin/>{cart[0]?.products?.length>0 &&
+                      <span className="nav_cart_count">{cart[0]?.products?.length}</span>
+                    } 
+                    </Link>
+                    </ul>
             </div>
         </Drawer>
         <div className="nav_contact_infos">
@@ -139,8 +192,8 @@ export default function Navbar() {
                             </>
                           }
 
-                          {/* {user.role === UserRoleEnum.CLIENT && */}
-                            <>
+                          {user.role === UserRoleEnum.CLIENT &&
+                          <>
                               <span style={{
                                 display: 'flex',
                                 alignItems: 'center',
@@ -150,8 +203,8 @@ export default function Navbar() {
                               <MdSell />Orders</Link>
                               </span>
                             <hr />
-                            </>
-                          {/* } */}
+                          </>
+                          }
 
                           
                           <span onClick={()=>logout()} style={{
@@ -174,7 +227,11 @@ export default function Navbar() {
                     </Link>
                     }
 
-                    <Link to="/carts"><PiShoppingCartThin/> <span className="nav_cart_count">{cart[0]?.products?.length}</span></Link>
+                    <Link to="/carts"><PiShoppingCartThin/>
+                    {cart[0]?.products?.length > 0 &&
+                      <span className="nav_cart_count">{cart[0]?.products?.length}</span>
+                    } 
+                    </Link>
                    
                 </ul>
             </div>

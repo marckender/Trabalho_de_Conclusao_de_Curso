@@ -7,7 +7,7 @@ const handleError = (error: any ) => {
     const {response} = error;
 
     if(response?.status && response?.status === 401) {
-        alert("[401] without permission");
+        // alert("");
         localStorage.removeItem('@afroHair:token')
         localStorage.removeItem('@afroHair:user')
 

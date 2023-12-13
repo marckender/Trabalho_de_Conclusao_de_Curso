@@ -5,7 +5,7 @@ import { TableCell, TableRow, styled, tableCellClasses } from "@mui/material";
 import { MdEditNote } from "react-icons/md";
 import { useOrderContext } from "../../../../contexts/useOrdersContext";
 import PagesHeader from "../../../UI/molecules/PagesHeader";
-import { CustomModal } from "../../../UI/molecules/CustomModal";
+// import { CustomModal } from "../../../UI/molecules/CustomModal";
 import "./styles.scss"
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function OrdersAdminPage() {
-    const { orders, getOrders, modalCreate, setModalCreate, loadingOrder } = useOrderContext();
+    const { orders, getOrders, setModalCreate, loadingOrder } = useOrderContext();
 
     const headers = [
         'Order Number',
@@ -52,7 +52,7 @@ export default function OrdersAdminPage() {
     return (
         <PageDefault>
 
-            <CustomModal
+            {/* <CustomModal
                 loading={loadingOrder}
                 title="Edit Order"
                 open={modalCreate}
@@ -73,7 +73,7 @@ export default function OrdersAdminPage() {
                     images
 
                 </div>
-            </CustomModal>
+            </CustomModal> */}
 
             <PagesHeader
                 title="Orders"
