@@ -1,9 +1,9 @@
 ## Trabalho de Conclusao de Curso
 
 
-# HairStore
+# AfroHome
 
-Bem-vindo ao HairStore - Sua loja online para cabelos de alta qualidade!
+Bem-vindo ao AfroHome - Sua loja online para cabelos de alta qualidade!
 
 ## Visão Geral
 
