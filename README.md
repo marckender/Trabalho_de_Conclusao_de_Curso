@@ -32,7 +32,7 @@ Certifique-se de ter as seguintes tecnologias instaladas antes de iniciar:
 
 ```bash
 git clone https://github.com/seu-usuario/hair-store.git
-cd hair-store
+cd Trabalho_de_Conclusao_de_Curso
 
 
 ##  Api Hosting => Vercel: 
